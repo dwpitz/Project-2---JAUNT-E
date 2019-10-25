@@ -16,5 +16,6 @@ A Collection Of Short Excursions and Journeys of Pleasure
 
 
 ##Stretch Goals:
-Making points of interest available as their own models (like articles to an author) and searchable out of context.
-Message boards or personal messaging.
+* Making points of interest available as their own models (like articles to an author) and searchable out of context.
+
+* Message boards or personal messaging.
