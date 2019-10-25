@@ -12,9 +12,13 @@ A Collection Of Short Excursions and Journeys of Pleasure
 
 ![User Page, Show, and New Routes](Photos/img_2.jpg)
 
-* Jaunter clicks on a jaunt they've been editing from their drafts list and enters an edit page. Jaunter completes the jaunt (including a pic from the jaunt, up to five points of interest on the jaunt with corresponding descriptions/pics/geo-locators, a description and title) and publishes it to the general pool of jaunts.
+* Jaunter clicks on a jaunt they've been editing from their drafts list and enters an edit page. Decides to add Points of Interest, clicks the POI edit button.
 
-* Jaunter clicks on a favorite jaunt of another Jaunter listed on their own page for inspiration. No edit link is available since they didn't create it. They click their profile button from the nav bar and jump back to their own profile page decide to update an existing jaunt that they already published.
+* On POI edit page, enters 3 points of interest, which populate on the bottom of the page. Upon submit goes back to Jaunt edit page.
+
+* Jaunter completes the jaunt (including a pic from the jaunt, up to five points of interest on the jaunt with corresponding descriptions/pics/geo-locators, a description and title) and publishes it to the general pool of jaunts.
+
+* Jaunter clicks on a favorite jaunt of another Jaunter listed on their own page for inspiration. No edit link is available since they didn't create it. They click their profile button from the nav bar and jump back to their own profile page. Jaunter decides to update an existing jaunt that they already published.
 
 * Jaunter clicks on jaunt they formerly published and sees a show page. From here they click the edit button (available because they are logged in and authored this jaunt) and make changes they excited about.
 
