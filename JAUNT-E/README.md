@@ -14,11 +14,11 @@ A Collection Of Short Excursions and Journeys of Pleasure
 
 * Jaunter clicks on a jaunt they've been editing from their drafts list and enters an edit page. Decides to add Points of Interest, clicks the POI edit button.
 
-* On POI edit page, enters 3 points of interest, which populate on the bottom of the page. Upon submit goes back to Jaunt edit page.
+* On POI edit page, enters a point of interest, which populate upon submit onto the bottom of the Jaunt edit page. Jaunter is sent back to Jaunt edit page.
 
 * Jaunter completes the jaunt (including a pic from the jaunt, up to five points of interest on the jaunt with corresponding descriptions/pics/geo-locators, a description and title) and publishes it to the general pool of jaunts.
 
-* Jaunter clicks on a favorite jaunt of another Jaunter listed on their own page for inspiration. No edit link is available since they didn't create it. They click their profile button from the nav bar and jump back to their own profile page. Jaunter decides to update an existing jaunt that they already published.
+* Jaunter clicks on a favorited jaunt from another Jaunter listed on their own page for inspiration. No edit link is available since they didn't create it. They click their profile button from the nav bar and jump back to their own profile page. Jaunter decides to update an existing jaunt that they already published.
 
 * Jaunter clicks on jaunt they formerly published and sees a show page. From here they click the edit button (available because they are logged in and authored this jaunt) and make changes they excited about.
 
@@ -26,6 +26,5 @@ A Collection Of Short Excursions and Journeys of Pleasure
 
 
 ##Stretch Goals:
-* Making points of interest available as their own models (like articles to an author) and searchable out of context.
 
 * Message boards or personal messaging.
