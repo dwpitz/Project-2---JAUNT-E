@@ -4,7 +4,8 @@ A Collection Of Short Excursions and Journeys of Pleasure
 ##User Stories
 
 ![Landing and Log In Pages](Photos/img_1.jpg)
-* Visitor lands on login page, sees recently created jaunts from all users as well as jaunt choices curated by site admins. 
+
+* Visitor lands on login page, sees recently created jaunts from all users as well as jaunt choices curated by site admins.
 
 * Visitor chooses to register or login with a username and password, (encrypted on server) and is able to enter the site in order to create and edit jaunts as well as collect favorites.
 
@@ -24,7 +25,5 @@ A Collection Of Short Excursions and Journeys of Pleasure
 
 ![Edit Route](Photos/img_3.jpg)
 
-
 ##Stretch Goals:
-
 * Message boards or personal messaging.
