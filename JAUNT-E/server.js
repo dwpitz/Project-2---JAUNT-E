@@ -5,7 +5,7 @@ const PORT = 3000
 require('./db/db.js')
 
 
-
+const jauntController = require('./controllers/jaunt.js')
 
 
 
