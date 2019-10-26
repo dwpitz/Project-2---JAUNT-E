@@ -6,6 +6,7 @@ require('./db/db.js')
 
 
 const jauntController = require('./controllers/jaunt.js')
+app.use('/jaunts', jauntController)
 
 
 
