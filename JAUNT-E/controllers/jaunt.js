@@ -13,4 +13,7 @@ router.get('/', (req, res, next) => {
 	}
 })
 
+// show route for jaunt
+router.post('/:id')
+
 module.exports = router
