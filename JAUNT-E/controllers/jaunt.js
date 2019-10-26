@@ -44,6 +44,7 @@ router.post('/', (req, res) => {
 
 
 // show route for jaunt
+<<<<<<< HEAD
 router.get('/:id', async (req, res, next) => {
 	try {
 		const foundJaunt = await Jaunt.findById(req.params.id)
@@ -52,7 +53,6 @@ router.get('/:id', async (req, res, next) => {
 		res.send(err)
 	}
 })
-
 
 
 
