@@ -5,9 +5,10 @@ const Jaunt = require('../models/jaunts')
 // index route, a list of jaunts available
 // to be populated once users are created? or just with dummy info
 // without ObjectId's from Users model?
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
 	try {
-		res.render('jaunts/index.ejs')
+		const foundJaunts = await Jaunt.find({})
+		res.render('jaunts/index.ejs', {jaunts: foundJaunts})
 	} catch(err) {
 		next(err)
 	}
@@ -25,14 +26,6 @@ router.get('/new', (req, res, next) => {
 
 // create route
 router.post('/', (req, res) => {
-	/*Jaunt.create(req.body, (err, createdJaunt) => {
-	    if (err) {
-	    	console.log(err)
-	    } else {
-	    	console.log(createdJaunt)
-	    	res.redirect('/jaunts')
-	    }
-	})*/
 	try {
 		Jaunt.create(req.body, (err, createdJaunt) => {
 		    if (err){

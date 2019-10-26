@@ -9,10 +9,10 @@
 		</nav>
 		<h1>Jaunts</h1>
 		<ul>
-			<li>Populate with jaunts</li>
-			<li>once we have users created</li>
-			<li>meanwhile, I guess i do it with dummy jaunts</li>
-			<li>that don't have the ObjectId's from non-existent users?</li>
+			<% for (let i = 0; i < jaunts.length; i++){%>
+			<a href="/jaunts/<%=jaunts[i]._id%>">
+			<li><%=jaunts[1].title%></li></a>
+			<%}%>
 		</ul>
 	</body>
 </html>
