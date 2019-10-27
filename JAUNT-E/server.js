@@ -15,6 +15,8 @@ app.use(methodOverride('_method'))
 const jauntController = require('./controllers/jaunt.js')
 app.use('/jaunts', jauntController)
 
+const favoriteController = require('./controllers/favorite.js')
+
 const  poiController = require('./controllers/poi.js')
 app.use('/poi', poiController)
 
