@@ -80,6 +80,18 @@ router.put('/:id', async (req, res, next) => {
 	}
 })
 
+//poi delete route
+router.delete('/:id', async (req, res, next) => {
+	try {
+		const deletePoi = await Poi.deleteOne({_id: req.params.id})
+		console.log(deletePoi);
+		res.redirect('/poi')
+	}
+	catch (err) {
+		next(err)
+	}
+})
+
 
 
 
