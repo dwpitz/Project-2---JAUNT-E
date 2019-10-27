@@ -8,11 +8,11 @@
 			<a href='/'>Home</a> | <a hef='/Users'>User</a> | <a href='/jaunts'>Jaunts</a>
 		</nav>
 		<h1>Edit <%=jaunt.title%></h1>
-		<form action='/jaunts' method='post'>
+		<form action='/jaunts/<%=jaunt.id%>?_method=PUT' method='post'>
 			Title: <input type="text" name="title" value="<%=jaunt.title%>"/><br/>
 			Google Map Url: <input type="text" name="location" value="<%=jaunt.location%>"/><br/>
-			Description: <input type='text' name='description' value="<%=jaunt.description%>"/><br/>
 			Photo Url: <input type="text" name="photo" value="<%=jaunt.photo%>"><br/>
+			Description: <textarea name='description'><%=jaunt.description%></textarea>><br/>
 			<input type="submit" value="submit"/>
 		</form>
 

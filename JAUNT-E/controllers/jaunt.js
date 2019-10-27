@@ -65,6 +65,19 @@ router.get('/:id/edit', async (req, res, next) => {
 })
 
 // update route for jaunt
-
+router.put('/:id', async (req, res, next) => {
+	try {
+		Jaunt.findByIdAndUpdate(req.params.id, req.body, (err, updatedJaunt) => {
+			if (err) {
+				res.send(err)
+			} else {
+				console.log(updatedJaunt)
+				res.redirect('/jaunts')
+			}		    
+		})
+	} catch(err){
+		next(err)
+	}
+})
 
 module.exports = router

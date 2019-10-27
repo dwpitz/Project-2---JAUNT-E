@@ -7,11 +7,13 @@
 		<nav>
 			<a href='/'>Home</a> | <a hef='/Users'>User</a> | <a href='/jaunts'>Jaunts</a>
 		</nav>
-		<h1 id='jauntH1'><%=jaunt.title%></h1>
-		<small id='jauntUser'>by <%=jaunt.user%></small><br/>
-		<p><a href="/<%=jaunt.id%>/edit">Edit</a> | Delete</p>
-		<img src="<%=jaunt.photo%>" height=100 width=auto id='jauntPic' align='left'>
-		<p id='jauntDesc'><%=jaunt.description%></p><br/><br/><br/>
+			<div>
+				<h1 id='jauntH1'><%=jaunt.title%></h1>
+				<small id='jauntUser'>by <%=jaunt.user%></small><br/>
+				<p><a href="/jaunts/<%=jaunt.id%>/edit">Edit</a> | Delete</p>
+				<img src="<%=jaunt.photo%>" height=100 width=auto id='jauntPic' align='left'>
+				<p id='jauntDesc' display=block><%=jaunt.description%></p>
+			</div><br/><br/><br/><br/><br/><br/>
 		<div id='jauntMap'>
 			Here's where the map of the jaunt will load
 		</div>

@@ -2,12 +2,16 @@ const express = require('express')
 const app = express()
 const PORT = 3000
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 require('./db/db')
 
 // middleware
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(methodOverride('_method'))
 
+
+// controllers
 const jauntController = require('./controllers/jaunt.js')
 app.use('/jaunts', jauntController)
 
