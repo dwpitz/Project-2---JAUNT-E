@@ -8,10 +8,10 @@
 		<a href='/'>Home</a> | <a hef='/Users'>User</a> | <a href='/jaunts'>Jaunts</a>
 	</nav>
 	<h1>Edit A New Point of Interest</h1>
-	<form action='/poi', method='POST'>
-		Title: <input type='text' name='title'><br/>
-		Photo: <input type='text' name='photo'><br/>
-		Description: <input type='text' name='description'><br/>
+	<form action='/poi/<%=poi._id%>?_method=PUT', method='POST'>
+		Title: <input type='text' name='title' value='<%=poi.title%>'><br/>
+		Photo: <input type='text' name='photo' value='<%=poi.photo%>'><br/>
+		Description: <input type='text' name='description' value='<%=poi.description%>'><br/>
 		<input type='submit' value='Edit A New Point of Interest'>
 	</form>
 

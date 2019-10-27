@@ -65,6 +65,21 @@ router.get('/:id/edit', async (req, res, next) => {
 	}
 })
 
+//poi put route
+router.put('/:id', async (req, res, next) => {
+	try {
+		const foundPoi = await Poi.findByIdAndUpdate(
+			req.params.id,
+			req.body,
+			{new: true}
+			);
+		res.redirect('/poi')
+	}
+	catch (err) {
+		next(err)
+	}
+})
+
 
 
 
