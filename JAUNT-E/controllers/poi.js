@@ -52,11 +52,20 @@ router.get('/:id', async (req, res, next) => {
 	}
 })
 
+//poi edit route
+router.get('/:id/edit', async (req, res, next) => {
+	try {
+		const foundPoi = await Poi.findById(req.params.id)
+		res.render('poi/edit.ejs', {
+			poi: foundPoi
+		})
+	}
+	catch (err) {
+		next(err)
+	}
+})
 
 
-// router.get('/', (req, res) => {
-//   res.render('poi/show.ejs');
-// })
 
 
 
