@@ -65,7 +65,7 @@ router.get('/:id/edit', async (req, res, next) => {
 })
 
 // update route for jaunt
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', (req, res, next) => {
 	try {
 		Jaunt.findByIdAndUpdate(req.params.id, req.body, (err, updatedJaunt) => {
 			if (err) {
@@ -79,5 +79,22 @@ router.put('/:id', async (req, res, next) => {
 		next(err)
 	}
 })
+
+// delete route for jaunt
+router.delete('/:id', (req, res, next) => {
+	try {
+		Jaunt.findByIdAndRemove(req.params.id, (err, deletedJaunt) => {
+		    if (err) {
+		    	res.send(err)
+		    } else {
+		    	console.log(deletedJaunt, ' was deleted')
+		    	res.redirect('/jaunts')
+		    }
+		})
+	} catch(err){
+		next(err)
+	}
+})
+
 
 module.exports = router
