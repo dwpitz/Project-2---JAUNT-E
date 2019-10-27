@@ -1,8 +1,11 @@
 const express = require('express')
 const app = express()
 const PORT = 3000
+const bodyParser = require('body-parser')
 
 require('./db/db.js')
+
+app.use(bodyParser.urlencoded({extended: false}))
 
 
 const jauntController = require('./controllers/jaunt.js')

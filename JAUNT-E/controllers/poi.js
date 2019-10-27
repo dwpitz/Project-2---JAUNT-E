@@ -17,9 +17,21 @@ router.get('/', async (req, res, next) => {
 })
 
 //poi New Route
-router.get('/new', async (req, res, next) => {
+router.get('/new', (req, res, next) => {
 	try {
 		res.render('poi/new.ejs')
+	}
+	catch (err) {
+		next(err)
+	}
+})
+
+//poi Create Route
+router.post('/', async (req, res, next) => {
+	try {
+		const createdPoi = await Poi.create(req.body)
+		console.log(req.body);
+		res.redirect('/poi')
 	}
 	catch (err) {
 		next(err)
