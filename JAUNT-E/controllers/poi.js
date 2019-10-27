@@ -39,7 +39,21 @@ router.post('/', async (req, res, next) => {
 })
 
 
-//poi show route
+// poi show route
+router.get('/:id', async (req, res, next) => {
+	try {
+		const foundPoi = await Poi.findById(req.params.id)
+		res.render('poi/show.ejs', {
+			poi: foundPoi
+		})
+	}
+	catch (err) {
+		next(err)
+	}
+})
+
+
+
 // router.get('/', (req, res) => {
 //   res.render('poi/show.ejs');
 // })
