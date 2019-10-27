@@ -54,6 +54,17 @@ router.get('/:id', async (req, res, next) => {
 	}
 })
 
+// edit route for jaunt
+router.get('/:id/edit', async (req, res, next) => {
+	try {
+		const foundJaunt = await Jaunt.findById(req.params.id)
+		res.render('jaunts/edit.ejs', {jaunt: foundJaunt})	
+	} catch(err){
+		next(err)
+	}
+})
+
+// update route for jaunt
 
 
 module.exports = router
