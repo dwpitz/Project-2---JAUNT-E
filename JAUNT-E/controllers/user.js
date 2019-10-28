@@ -16,8 +16,15 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
-
-
+//user new route
+router.get('/new', (req, res, next) => {
+	try {
+		res.render('users/new.ejs')
+	}
+	catch (err) {
+		next(err)
+	}
+})
 
 
 module.exports = router
