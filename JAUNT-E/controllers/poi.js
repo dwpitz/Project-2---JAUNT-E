@@ -34,7 +34,7 @@ router.get('/new', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
 	try {
 		const createdPoi = await Poi.create(req.body)
-		const jauntId = await Jaunt.findById(req.params.jauntId)
+		const jauntId = await Jaunt.findById(req.body.jauntId)
 		jauntId.poi.push(createdPoi)
 		console.log(createdPoi);
 		res.redirect('/poi')
