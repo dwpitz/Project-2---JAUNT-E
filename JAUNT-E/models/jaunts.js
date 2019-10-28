@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const Poi = require('./poi.js')
+
 const jauntSchema = new mongoose.Schema({
 	user: String/*{
 	type: mongoose.Schema.Types.ObjectId, required: true
@@ -11,8 +13,10 @@ const jauntSchema = new mongoose.Schema({
 		type: String, required: true
 	}*/,
 	description: String,
-	published: Boolean
-	})
+	published: Boolean,
+	poi: [Poi.schema]
+	//subdoc for POI
+})
 
 const Jaunt = mongoose.model('Jaunt', jauntSchema)
 
