@@ -6,9 +6,6 @@ const methodOverride = require('method-override')
 
 require('./db/db')
 
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(methodOverride('_method'))
-
 // middleware
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(methodOverride('_method'))

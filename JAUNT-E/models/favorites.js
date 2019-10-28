@@ -3,11 +3,11 @@ const favoriteSchema = new mongoose.Schema({
 	    user: String, /*{
 	type: mongoose.Schema.Types.ObjectId, required: true
 	} // once we integrate users with id's */
-	    jauntId: {type: mongoose.Schema.Types.ObjectId, required: true
-	}
+	    jauntId: mongoose.Schema.Types.ObjectId,
+	    title: String
 })
 
 
 const Favorite = mongoose.model('Favorite', favoriteSchema)
 
-module.export = Favorite
+module.exports = Favorite

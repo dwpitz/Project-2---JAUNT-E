@@ -10,8 +10,8 @@
 			<div>
 				<h1 id='jauntH1'><%=jaunt.title%></h1>
 				<small id='jauntUser'>by <%=jaunt.user%></small><br/>
-			<form method='POST' action='/favorites'>
-				<button>Favorite</button></form> | 
+			<form method='POST' action='/favorites/'>
+				<button name='<%=jaunt._id%>'>Favorite</button></form> | 
 					<a href="/jaunts/<%=jaunt._id%>/edit">Edit</a> | 
 					<form method='POST' action='/jaunts/<%=jaunt._id%>?_method=DELETE'><button value='DELETE'>Delete</button></form> </p>
 				<img src="<%=jaunt.photo%>" height=100 width=auto id='jauntPic' align='left'>
