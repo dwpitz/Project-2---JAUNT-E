@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Poi = require('../models/poi')
+const Jaunt = require('../models/jaunts')
 
 
 
@@ -19,9 +20,10 @@ router.get('/', async (req, res, next) => {
 })
 
 //poi New Route
-router.get('/new', (req, res, next) => {
+router.get('/new', async (req, res, next) => {
 	try {
-		res.render('poi/new.ejs')
+		const foundJaunts = await Jaunt.find({})
+		res.render('poi/new.ejs', {jaunts: foundJaunts})
 	}
 	catch (err) {
 		next(err)
@@ -32,13 +34,26 @@ router.get('/new', (req, res, next) => {
 router.post('/', async (req, res, next) => {
 	try {
 		const createdPoi = await Poi.create(req.body)
-		console.log(req.body);
+		const jauntId = await Jaunt.findById(req.params.jauntId)
+		jauntId.poi.push(createdPoi)
+		console.log(createdPoi);
 		res.redirect('/poi')
 	}
 	catch (err) {
 		next(err)
 	}
 })
+
+// router.get('/testcreate', async (req, res, next) => {
+// 	const j = await Jaunt.findById('5db4b11a9bd15d2b05aad358')
+// 	j.poi.push({
+// 		title: 'asdf',
+// 		photo: 'asdf',
+// 		description: 'asdf'
+// 	})
+// 	await j.save()
+// 	res.redirect('/jaunts/5db4b11a9bd15d2b05aad358')
+// })
 
 
 // poi show route
