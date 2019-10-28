@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login To The Site</title>
+</head>
+<body>
+	<nav>
+		<a href='/'>Home</a> | <a hef='/Users'>User</a> | <a href='/jaunts'>Jaunts</a>
+	</nav>
+	<h1>Login To The Site</h1>
+	<p>
+		<%= message %>
+	</p>
+	<form action='/users/login', method='POST'>
+		Username: <input type='text' name='username'><br/>
+		Password: <input type='text' name='password'><br/>
+		<input type='submit' value='Login To JAUNT-E'>
+	</form>
+	<small>Need an account?  <a href='/users/register'>Sign up here!</a></small>
+
+</body>
+</html>
