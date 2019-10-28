@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Poi = require('../models/poi')
 
+
 //poi Index Route
 router.get('/', async (req, res, next) => {
 	try {
