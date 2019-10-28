@@ -9,9 +9,9 @@
 		</nav>
 		<h1>Favorites</h1>
 		<ul>
-			<li>a list of</li>
-			<li> favorited routes</li>
-			<li> of the user </li>
+			<% for (let i = 0 ; i < faves.length; i++){%>
+			<li><a hef="jaunts/<%=faves[i].jauntId%>"><%=faves[i].title%></li>
+			<%}%>
 		</ul>
 	</body>
 </html>
