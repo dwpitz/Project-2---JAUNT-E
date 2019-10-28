@@ -25,7 +25,7 @@ router.get('/new', (req, res, next) => {
 })
 
 // create route
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
 	try {
 		Jaunt.create(req.body, (err, createdJaunt) => {
 		    if (err){
@@ -37,17 +37,28 @@ router.post('/', (req, res) => {
 		})
 		
 	} catch(err) {
-		res.send(err)
+		next(err)
 	}
 })
 
 
+router.get('/testcreate', async (req, res, next) => {
+	const j = await Jaunt.findById('5db4b11a9bd15d2b05aad358')
+	j.poi.push({
+		title: 'asdf',
+		photo: 'asdf',
+		description: 'asdf'
+	})
+	await j.save()
+	res.redirect('/jaunts/5db4b11a9bd15d2b05aad358')
+})
 
 // show route for jaunt
 
 router.get('/:id', async (req, res, next) => {
 	try {
 		const foundJaunt = await Jaunt.findById(req.params.id)
+		console.log(foundJaunt)
 		res.render('jaunts/show.ejs', {jaunt: foundJaunt})
 	} catch(err) {
 		res.send(err)
