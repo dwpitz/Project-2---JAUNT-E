@@ -5,17 +5,22 @@
 	</head>
 	<body>
 		<nav>
-			<a href='/'>Home</a> | <a hef='/Users'>User</a> | <a href='/jaunts'>Jaunts</a>
+			<a href='/'>Home</a> | <a hef='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/favorites">Favorites</a>
 		</nav>
 			<div>
 				<h1 id='jauntH1'><%=jaunt.title%></h1>
 				<small id='jauntUser'>by <%=jaunt.user%></small><br/>
-				<p><a href="/jaunts/<%=jaunt._id%>/edit">Edit</a> | <form method='POST' action='/jaunts/<%=jaunt._id%>?_method=DELETE'><button value='DELETE'>Delete</button></form></p>
+			<form method='POST' action='/favorites'>
+				<button>Favorite</button></form> | 
+					<a href="/jaunts/<%=jaunt._id%>/edit">Edit</a> | 
+					<form method='POST' action='/jaunts/<%=jaunt._id%>?_method=DELETE'><button value='DELETE'>Delete</button></form> </p>
 				<img src="<%=jaunt.photo%>" height=100 width=auto id='jauntPic' align='left'>
 				<p id='jauntDesc' display=block><%=jaunt.description%></p>
 			</div><br/><br/><br/><br/><br/><br/>
 		<div id='jauntMap'>
 			Here's where the map of the jaunt will load
 		</div>
+			
+		</form>
 	</body>
 </html>

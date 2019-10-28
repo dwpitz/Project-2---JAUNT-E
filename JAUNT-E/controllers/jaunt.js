@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const Jaunt = require('../models/jaunts')
+// including favorites here so as to aid in creating favorites?
+const Favorite = require('../models/favorites')
 
 // index route, a list of jaunts available
-// to be populated once users are created? or just with dummy info
-// without ObjectId's from Users model?
 router.get('/', async (req, res, next) => {
 	try {
 		const foundJaunts = await Jaunt.find({})
