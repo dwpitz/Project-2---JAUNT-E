@@ -64,5 +64,21 @@ router.get('/:id/edit', async (req, res, next) => {
 	}
 })
 
+//user put route
+router.put('/:id', async (req, res, next) => {
+	try {
+		const foundUser = await User.findByIdAndUpdate(
+			req.params.id,
+			req.body,
+			{new: true}
+			);
+		res.redirect('/users')
+	}
+	catch (err) {
+		next(err)
+	}
+})
+
+
 
 module.exports = router
