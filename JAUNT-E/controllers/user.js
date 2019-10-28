@@ -51,5 +51,18 @@ router.get('/:id', async (req, res, next) => {
 	}
 })
 
+//user edit route
+router.get('/:id/edit', async (req, res, next) => {
+	try {
+		const foundUser = await User.findById(req.params.id)
+		res.render('users/edit.ejs', {
+			user: foundUser
+		})
+	}
+	catch (err) {
+		next(err)
+	}
+})
+
 
 module.exports = router
