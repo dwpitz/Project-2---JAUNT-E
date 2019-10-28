@@ -16,6 +16,9 @@ app.use('/jaunts', jauntController)
 const  poiController = require('./controllers/poi.js')
 app.use('/poi', poiController)
 
+const userController = require('./controllers/user.js')
+app.use('/users', userController)
+
 
 
 

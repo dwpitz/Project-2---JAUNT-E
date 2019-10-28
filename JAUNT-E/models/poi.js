@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 const poiSchema = new mongoose.Schema({
 	title: {
 		type: String, 
