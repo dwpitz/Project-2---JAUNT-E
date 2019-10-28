@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JAUNT-E USERS</title>
+	</head>
+	<body>
+		<nav>
+			<a href='/'>Home</a> | <a hef='/Users'>User</a> | <a href='/jaunts'>Jaunts</a>
+		</nav>
+		<h1>JAUNTE-E Users</h1>
+		 <ul>
+        <% for (i = 0; i < users.length; i++) {%>
+        	<li>
+            	<a href='/users/<%=users[i]._id%>'><%=users[i].username%></a>
+        	</li>
+        <%}%>
+	</ul>
+	</body>
+</html>

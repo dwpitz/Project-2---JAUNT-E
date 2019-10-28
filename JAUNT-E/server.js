@@ -6,12 +6,16 @@ const methodOverride = require('method-override')
 
 require('./db/db')
 
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(methodOverride('_method'))
+
 // middleware
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(methodOverride('_method'))
 
 
 // controllers
+
 const jauntController = require('./controllers/jaunt.js')
 app.use('/jaunts', jauntController)
 
@@ -20,6 +24,10 @@ app.use('/favorites', favoriteController)
 
 const  poiController = require('./controllers/poi.js')
 app.use('/poi', poiController)
+
+const userController = require('./controllers/user.js')
+app.use('/users', userController)
+
 
 app.get('/', (req, res, next) => {
 	try {
