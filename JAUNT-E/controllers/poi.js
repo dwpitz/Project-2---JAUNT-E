@@ -44,16 +44,6 @@ router.post('/', async (req, res, next) => {
 	}
 })
 
-// router.get('/testcreate', async (req, res, next) => {
-// 	const j = await Jaunt.findById('5db4b11a9bd15d2b05aad358')
-// 	j.poi.push({
-// 		title: 'asdf',
-// 		photo: 'asdf',
-// 		description: 'asdf'
-// 	})
-// 	await j.save()
-// 	res.redirect('/jaunts/5db4b11a9bd15d2b05aad358')
-// })
 
 
 // poi show route

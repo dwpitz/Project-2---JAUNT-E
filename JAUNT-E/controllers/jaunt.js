@@ -49,7 +49,6 @@ router.post('/', (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
 	try {
 		const foundJaunt = await Jaunt.findById(req.params.id)
-		console.log(foundJaunt)
 		res.render('jaunts/show.ejs', {jaunt: foundJaunt})
 	} catch(err) {
 		res.send(err)
@@ -73,7 +72,6 @@ router.put('/:id', (req, res, next) => {
 			if (err) {
 				res.send(err)
 			} else {
-				console.log(updatedJaunt)
 				res.redirect('/jaunts')
 			}		    
 		})
