@@ -3,10 +3,20 @@ const app = express()
 const PORT = 3000
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const session = require('express-session')
+const secretInfo = require('./secretinfo.js')
 
 require('./db/db')
 
 // middleware
+
+
+app.use(session({
+	secret: secretInfo,
+	resave: false,
+	saveUninitialized: false
+}))
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(methodOverride('_method'))
 

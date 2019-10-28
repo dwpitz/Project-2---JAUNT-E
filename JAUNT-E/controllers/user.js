@@ -17,8 +17,21 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
-//user new route
-router.get('/new', (req, res, next) => {
+//Login Page
+router.get('/login', (req, res) => {
+	let messageToShow = ''
+	if(req.session.message){
+		messageToShow = req.session.message
+		req.session.message = ''
+	}
+
+	res.render('users/login.ejs', {
+		message: messageToShow
+	})
+})
+
+//Registration Route - Get
+router.get('/register', (req, res, next) => {
 	try {
 		res.render('users/new.ejs')
 	}
@@ -27,7 +40,7 @@ router.get('/new', (req, res, next) => {
 	}
 })
 
-//user create route
+//Registration Route - post
 router.post('/', async (req, res, next) => {
 	try {
 		const createdUser = await User.create(req.body)
