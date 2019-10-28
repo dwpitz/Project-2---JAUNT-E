@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
+const Favorite = require('../models/favorites')
 
 //user index route
 router.get('/', async (req, res, next) => {
