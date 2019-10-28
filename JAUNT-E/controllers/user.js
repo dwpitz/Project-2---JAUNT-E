@@ -38,5 +38,18 @@ router.post('/', async (req, res, next) => {
 	}
 })
 
+//user show route
+router.get('/:id', async (req, res, next) => {
+	try {
+		const foundUser = await User.findById(req.params.id)
+		res.render('users/show.ejs', {
+			user: foundUser
+		})
+	}
+	catch (err) {
+		next(err)
+	}
+})
+
 
 module.exports = router
