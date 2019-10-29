@@ -5,11 +5,15 @@ const Jaunt = require('../models/jaunts')
 
 // index route
 router.get('/', async (req, res, next) => {
-	try { 
-		const foundFaves = await Favorite.find({})
-		res.render('favorites/index.ejs', {faves: foundFaves})
-	} catch(err) {
-		next(err)
+	if (req.session.logged){
+		try { 
+			const foundFaves = await Favorite.find({})
+			res.render('favorites/index.ejs', {faves: foundFaves})
+		} catch(err) {
+			next(err)
+		}
+	} else {
+		res.redirect('../users/login')
 	}
 })
 
