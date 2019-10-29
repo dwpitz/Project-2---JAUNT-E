@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router()
 const Favorite = require('../models/favorites')
 const Jaunt = require('../models/jaunts')
+const User = require('../models/user')
 
 // index route
 router.get('/', async (req, res, next) => {
@@ -22,7 +23,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
 	try {
 		const foundJaunt = await Jaunt.findById(req.body.jauntId)
-		const foundUser = await User.findById(req.session.Userid)
+		const foundUser = await User.findById(req.session.userId)
 		const createdFave = await Favorite.create({jauntId: foundJaunt._id, title: foundJaunt.title, user: foundUser._id})
 		console.log(createdFave)
 		res.redirect('/jaunts')

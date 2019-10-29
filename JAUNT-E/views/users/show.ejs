@@ -15,5 +15,11 @@
 		<a href="../jaunts/<%=jaunts[i]._id%>"><li><%=jaunts[i].title%></li></a>
 	<%}%>
 	</ul>
+	<h2>Faves</h2>
+	<ul>
+	<% for (let i =0; i < faves.length; i++){%>
+		<a href="../jaunts/<%=faves[i].jauntId%>"><li><%=faves[i].title%></li></a>
+	<%}%>
+	</ul>
 
 <%- include ../footer.ejs%>
