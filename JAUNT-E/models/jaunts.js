@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Poi = require('./poi.js')
 
 const jauntSchema = new mongoose.Schema({
+	// try to grab this from the session.userId, which is set at login/registration
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User' 

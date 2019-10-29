@@ -22,8 +22,8 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
 	try {
 		const foundJaunt = await Jaunt.findById(req.body.jauntId)
-		const foundUser = await User.findById(req.session.)
-		const createdFave = await Favorite.create({jauntId: foundJaunt._id, title: foundJaunt.title}, )
+		const foundUser = await User.findById(req.session.Userid)
+		const createdFave = await Favorite.create({jauntId: foundJaunt._id, title: foundJaunt.title, user: foundUser._id})
 		console.log(createdFave)
 		res.redirect('/jaunts')
 	} catch(err) {

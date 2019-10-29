@@ -55,7 +55,8 @@ router.post('/login', async (req, res, next) => {
 			if(bcryptjs.compareSync(pw, foundUsers[0].password)) {
 				req.session.loggedIn = true
 				req.session.username = foundUsers[0].username
-				req.session.id = foundUsers[0]._id	
+				req.session.userId = foundUsers[0]._id
+				console.log(req.session,' session info')
 				res.redirect('/')
 			} else {
 				console.log('bad password');
@@ -98,7 +99,7 @@ router.post('/', async (req, res, next) => {
 			console.log(createdUser)
 			// use session to make user be 'logged in'
 			req.session.logged = true
-			// use the username from the db
+			req.session.userId = createdUser._id	
 			req.session.username = createdUser.username
 			res.redirect('/')
 		}
