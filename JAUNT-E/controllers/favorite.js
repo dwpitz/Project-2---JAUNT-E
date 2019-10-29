@@ -5,7 +5,7 @@ const Jaunt = require('../models/jaunts')
 
 // index route
 router.get('/', async (req, res, next) => {
-	if (req.session.logged){
+	if (req.session.loggedIn){
 		try { 
 			const foundFaves = await Favorite.find({})
 			res.render('favorites/index.ejs', {faves: foundFaves})
@@ -13,6 +13,7 @@ router.get('/', async (req, res, next) => {
 			next(err)
 		}
 	} else {
+		console.log(req.session);
 		res.redirect('../users/login')
 	}
 })
@@ -21,21 +22,13 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
 	try {
 		const foundJaunt = await Jaunt.findById(req.body.jauntId)
-		const createdFave = await Favorite.create({jauntId: req.body.jauntId, title: foundJaunt.title})
+		const foundUser = await User.findById(req.session.)
+		const createdFave = await Favorite.create({jauntId: foundJaunt._id, title: foundJaunt.title}, )
 		console.log(createdFave)
 		res.redirect('/jaunts')
 	} catch(err) {
 		next(err)	
 	}
-/*	Favorite.create({jauntId: req.body.jauntId, title: req.body.title}, (err, createdFave) => {
-	    if (err) {
-	    	console.log(err)
-	    } else {
-	    	console.log(createdFave)
-	    	res.redirect('/jaunts')
-	    }  
-	})*/
-
 })
 // delete route attached to the new route? Clicking the button adds or deletes the favorite record? 
 

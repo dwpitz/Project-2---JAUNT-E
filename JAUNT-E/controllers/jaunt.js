@@ -25,6 +25,18 @@ router.get('/new', (req, res) => {
 // create route
 router.post('/', (req, res, next) => {
 	try {
+		
+
+		// get user object from db based on username in session
+
+		// {
+		// 	user: foundUser
+		// 	title: 
+		// 	descript:
+		// 	asdf: req.body.asdf
+		// }
+
+
 		Jaunt.create(req.body, (err, createdJaunt) => {
 		    if (err){
 		    	next(err)
