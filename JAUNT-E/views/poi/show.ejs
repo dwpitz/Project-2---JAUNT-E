@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<a href='/'>Home</a> | <a href='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/poi">Places Of Interest</a> | <a href="/favorites">Favorites</a>
 	<title>Point Of Interest Page</title>
 	<h1>Point Of Interest Page For <%=poi.title%></h1>
 	<!--This can obviously move to a CSS page.  It's just sitting here while I try and get maps working.-->
@@ -35,7 +36,9 @@
 <script async defer
 	src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDjvCG1Sg7ya5nXh9Yq4H46vFpxQ2h_NgY&callback=initMap">
 </script>
-
+<form action='/poi/<%=poi._id%>/edit'>
+	<button type='Submit'>Edit This Place of Interest</button>
+</form>
 <form action='?_method=DELETE' method='POST'>
 	<button type='Submit'>Delete This Place of Interest</button>
 </form>

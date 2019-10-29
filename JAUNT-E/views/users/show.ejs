@@ -5,10 +5,12 @@
 </head>
 <body>
 	<nav>
-		<a href='/'>Home</a> | <a hef='/Users'>User</a> | <a href='/jaunts'>Jaunts</a>
+		<a href='/'>Home</a> | <a href='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/poi">Places Of Interest</a> | <a href="/favorites">Favorites</a>
 	</nav>
 	<h1><%=user.username%>'s JAUNTE-E Profile</h1>
-
+	<form action='/users/<%=user._id%>/edit'>
+		<button type='Submit'>Edit Your Profile</button>
+	</form>
 	<form action='?_method=DELETE' method='POST'>
 		<button type='Submit'>Delete Your Profile</button>
 	</form>
