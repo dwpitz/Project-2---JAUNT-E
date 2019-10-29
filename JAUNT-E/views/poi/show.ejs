@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<a href='/'>Home</a> | <a href='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/poi">Places Of Interest</a> | <a href="/favorites">Favorites</a>
+<%- include ../header.ejs%>
+
+</a> | <a href="/favorites">Favorites</a>
 	<title>Point Of Interest Page</title>
 	<h1>Point Of Interest Page For <%=poi.title%></h1>
 	<!--This can obviously move to a CSS page.  It's just sitting here while I try and get maps working.-->
@@ -43,5 +42,4 @@
 	<button type='Submit'>Delete This Place of Interest</button>
 </form>
 
-</body>
-</html>
+<%- include ../footer.ejs%>
