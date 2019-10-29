@@ -16,12 +16,8 @@ router.get('/', async (req, res, next) => {
 
 
 // new route
-router.get('/new', (req, res, next) => {
-	try {
-		res.render('jaunts/new.ejs')
-	} catch(err) {
-		next(err)
-	}
+router.get('/new', (req, res) => {
+	res.render('jaunts/new.ejs')
 })
 
 // create route
@@ -29,12 +25,13 @@ router.post('/', (req, res, next) => {
 	try {
 		Jaunt.create(req.body, (err, createdJaunt) => {
 		    if (err){
-		    	res.send(err, 'this is your error, dummy')
+		    	next(err)
 		    } else {
 				console.log(createdJaunt)
 				res.redirect('/jaunts')    	
 		    }
 		})
+
 		
 	} catch(err) {
 		next(err)
@@ -49,10 +46,12 @@ router.post('/', (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
 	try {
 		const foundJaunt = await Jaunt.findById(req.params.id)
+		console.log(foundJaunt)
+		
 		res.render('jaunts/show.ejs', {jaunt: foundJaunt})
 		console.log(foundJaunt);
 	} catch(err) {
-		res.send(err)
+		next(err)
 	}
 })
 

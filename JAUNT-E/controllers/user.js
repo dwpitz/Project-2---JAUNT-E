@@ -8,10 +8,10 @@ const bcryptjs = require('bcryptjs')
 router.get('/', async (req, res, next) => {
 	try {
 		const foundUser = await User.find()
+		req.session.mousetrap = 'Greg'
 		res.render('users/index.ejs', {
 			users: foundUser
 		})
-		req.session.mousetrap = 'Greg'
 	}
 	catch (err) {
 		next(err)
@@ -20,6 +20,8 @@ router.get('/', async (req, res, next) => {
 
 //Login Page
 router.get('/login', (req, res) => {
+
+	
 	let messageToShow = ''
 	if(req.session.message){
 		messageToShow = req.session.message
@@ -110,8 +112,22 @@ router.post('/', async (req, res, next) => {
 	}
 })
 
+// user logout route
+router.get('/logout', (req, res) => {
+
+	req.session.destroy((err) => {
+		if (err) {
+			console.log(err)
+		} else {
+			res.redirect('/')
+		}
+	})
+})
+
+
 //user show route
 router.get('/:id', async (req, res, next) => {
+	console.log(req.params.id, "is the id")
 	try {
 		const foundUser = await User.findById(req.params.id)
 		res.render('users/show.ejs', {
@@ -162,16 +178,6 @@ router.delete('/:id', async (req, res, next) => {
 	}
 })
 
-// user logout route
-router.get('/logout', (req, res) => {
-	req.session.destroy(function(err) {
-		if (err) {
-			console.log(err)
-		} else {
-			res.redirect('/')
-		}
-	})
-})
 
 
 module.exports = router
