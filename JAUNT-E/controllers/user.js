@@ -34,10 +34,34 @@ router.get('/login', (req, res) => {
 // login post
 router.post('/login', async (req, res, next) => {
 	try {
-		req.session.username = req.body.username;
-		req.session.logged = true
-		console.log(req.session)
-		res.redirect('/users')	
+		const foundUsers = await User.find({
+			username: req.body.username
+		})
+
+		if(foundUsers.length === 0) {
+			console.log('Username Does Not Exist');
+			req.session.message = 'Invalid username or password'
+			res.redirect('/users/login')
+		} else {
+			const pw = req.body.password
+			console.log(foundUsers[0])
+			if(bcryptjs.compareSync(pw, foundUsers[0].password)) {
+				req.session.loggedIn = true
+				req.session.username = foundUsers[0].username
+				res.redirect('/')
+			} else {
+				console.log('bad password');
+				req.session.message = 'Invalid username or password'
+				res.redirect('/users/login')
+			}
+		}
+
+
+
+	// 	req.session.username = req.body.username;
+	// 	req.session.logged = true
+	// 	console.log(req.session)
+	// 	res.redirect('/users')	
 	} catch(err){
 		next(err)
 	}

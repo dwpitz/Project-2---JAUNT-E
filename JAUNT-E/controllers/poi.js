@@ -1,3 +1,4 @@
+
 const express = require('express')
 const router = express.Router()
 const Poi = require('../models/poi')
@@ -36,6 +37,9 @@ router.post('/', async (req, res, next) => {
 		const createdPoi = await Poi.create(req.body)
 		const jauntId = await Jaunt.findById(req.body.jauntId)
 		jauntId.poi.push(createdPoi)
+		jauntId.save((err) => {
+			if(err) next(err)
+		})
 		console.log(createdPoi);
 		res.redirect('/poi')
 	}

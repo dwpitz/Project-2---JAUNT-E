@@ -50,6 +50,7 @@ router.get('/:id', async (req, res, next) => {
 	try {
 		const foundJaunt = await Jaunt.findById(req.params.id)
 		res.render('jaunts/show.ejs', {jaunt: foundJaunt})
+		console.log(foundJaunt);
 	} catch(err) {
 		res.send(err)
 	}

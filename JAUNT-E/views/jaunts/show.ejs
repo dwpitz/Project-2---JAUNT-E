@@ -19,7 +19,11 @@
 				<p id='jauntDesc' display=block><%=jaunt.description%></p><br/>
 				<ul>
 				<% for (let i = 0; i < jaunt.poi.length; i++){%>
-					<li><%=jaunt.poi[i].title%></li>
+					<li><%=jaunt.poi[i].title%><br/>
+						<img src=<%=jaunt.poi[i].photo%>
+						
+
+					</li>
 				<%}%>
 				</ul>
 			</div><br/><br/><br/><br/><br/><br/>
