@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	    <title>JAUNT-E USERS</title>
-	</head>
-	<body>
-	    <nav>
-	        <a href='/'>Home</a> | <a href='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/poi">Places Of Interest</a> | <a href="/favorites">Favorites</a>
-	    </nav>
+<%- include ../header.ejs%>
+
 	    <h1>JAUNTE-E Users</h1>
 	    <ul>
 	        <% for (i = 0; i < users.length; i++) {%>
@@ -18,5 +11,5 @@
 		<footer>
 			<a href="users/login"><p>Login To The Site</p></a>
 		</footer>
-	</body>
-</html>
+
+<%- include ../footer.ejs%>

@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Profile Page</title>
-</head>
-<body>
-	<nav>
-		<a href='/'>Home</a> | <a href='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/poi">Places Of Interest</a> | <a href="/favorites">Favorites</a>
-	</nav>
+<%- include ../header.ejs%>
+
+
 	<h1><%=user.username%>'s JAUNTE-E Profile</h1>
 	<form action='/users/<%=user._id%>/edit'>
 		<button type='Submit'>Edit Your Profile</button>
@@ -15,6 +9,11 @@
 		<button type='Submit'>Delete Your Profile</button>
 	</form>
 	<a href='/users/logout'>Log Out</a>
+	<h2>Jaunts</h2>
+	<ul>
+	<% for (let i =0; i < jaunts.length; i++){%>
+		<a href="../jaunts/<%=jaunts[i]._id%>"><li><%=jaunts[i].title%></li></a>
+	<%}%>
+	</ul>
 
-</body>
-</html>
+<%- include ../footer.ejs%>

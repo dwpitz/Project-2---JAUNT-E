@@ -3,12 +3,13 @@ const router = express.Router()
 const User = require('../models/user')
 const Favorite = require('../models/favorites')
 const bcryptjs = require('bcryptjs')
+const Jaunt = require('../models/jaunts')
 
 //user index route
+// should we get rid of this, or only make it accessible to admins maybe?
 router.get('/', async (req, res, next) => {
 	try {
 		const foundUser = await User.find()
-		req.session.mousetrap = 'Greg'
 		res.render('users/index.ejs', {
 			users: foundUser
 		})
@@ -21,7 +22,7 @@ router.get('/', async (req, res, next) => {
 //Login Page
 router.get('/login', (req, res) => {
 
-	
+	// announcing errors to the user on the ejs page
 	let messageToShow = ''
 	if(req.session.message){
 		messageToShow = req.session.message
@@ -57,13 +58,6 @@ router.post('/login', async (req, res, next) => {
 				res.redirect('/users/login')
 			}
 		}
-
-
-
-	// 	req.session.username = req.body.username;
-	// 	req.session.logged = true
-	// 	console.log(req.session)
-	// 	res.redirect('/users')	
 	} catch(err){
 		next(err)
 	}
@@ -103,10 +97,7 @@ router.post('/', async (req, res, next) => {
 			req.session.username = createdUser.username
 			res.redirect('/')
 		}
-/*		const createdUser = await User.create(req.body)
-		console.log(req.body)
-		res.redirect('/users')
-*/	}
+	}
 	catch (err) {
 		next(err)
 	}
@@ -125,13 +116,17 @@ router.get('/logout', (req, res) => {
 })
 
 
-//user show route
+//user show route, profile page
 router.get('/:id', async (req, res, next) => {
 	console.log(req.params.id, "is the id")
 	try {
 		const foundUser = await User.findById(req.params.id)
+		const foundFaves = await Favorite.find({user: req.params.username})
+		console.log(foundFaves)
+		const foundJaunts = await Jaunt.find({user: req.params.username})
+		console.log(foundJaunts)
 		res.render('users/show.ejs', {
-			user: foundUser
+			user: foundUser, faves: foundFaves, jaunts: foundJaunts
 		})
 	}
 	catch (err) {

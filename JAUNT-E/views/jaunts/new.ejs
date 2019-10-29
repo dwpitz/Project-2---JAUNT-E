@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>New Jaunt</title>
-	</head>
-	<body>
-		<nav>
-			<a href='/'>Home</a> | <a href='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/poi">Places Of Interest</a> | <a href="/favorites">Favorites</a>
-		</nav>
+<%- include ../header.ejs%>
+
+
 		<h1>New Jaunt</h1>
 		<form action='/jaunts' method='post'>
-			User: <input type="text" name="user"><br/>
+			<input type="hidden" name="user" value='<%=user%>'><br/>
 			Title: <input type="text" name="title"/><br/>
 			Google Map Url: <input type="text" name="location"/><br/>
 			Description: <input type='text' name='description'/><br/>
@@ -17,5 +11,4 @@
 			<input type="submit" value="submit"/>
 		</form>
 
-	</body>
-</html>
+<%- include ../footer.ejs%>

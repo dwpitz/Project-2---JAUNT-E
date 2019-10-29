@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Favorite Index</title>
-	</head>
-	<body>
-		<nav>
-			<a href='/'>Home</a> | <a href='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/poi">Places Of Interest</a> | <a href="/favorites">Favorites</a>
+<%- include ../header.ejs%>
 		</nav>
 		<h1>Favorites</h1>
 		<ul>
@@ -13,5 +6,5 @@
 			<li><a hef="jaunts/<%=faves[i].jauntId%>"><%=faves[i].title%></li>
 			<%}%>
 		</ul>
-	</body>
-</html>
+
+<%- include ../footer.ejs%>

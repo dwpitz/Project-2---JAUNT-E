@@ -19,9 +19,7 @@ router.get('/', async (req, res, next) => {
 router.get('/new', (req, res) => {
 	res.render('jaunts/new.ejs', {
 		user: req.session.username
-	}
-
-		)
+	})
 })
 
 // create route

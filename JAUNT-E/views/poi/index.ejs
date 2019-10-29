@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Places Of Interest</title>
-	</head>
-	<body>
-		<nav>
-			<a href='/'>Home</a> | <a href='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/poi">Places Of Interest</a> | <a href="/favorites">Favorites</a>
-		</nav>
+<%- include ../header.ejs%>
 		<h1>Places of Interest</h1>
 		 <ul>
         <% for (i = 0; i < pois.length; i++) {%>
@@ -18,5 +10,5 @@
 	<footer>
 			<a href="/poi/new"><p>Add A New Place of Interest</p></a>
 	</footer>
-	</body>
-</html>
+
+<%- include ../footer.ejs%>

@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Edit Your Profile</title>
-</head>
-<body>
-	<nav>
-		<a href='/'>Home</a> | <a href='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/poi">Places Of Interest</a> | <a href="/favorites">Favorites</a>
-	</nav>
+<%- include ../header.ejs%>
+
+
 	<h1>Edit Your Profile</h1>
 	<form action='/users/<%=user.id%>?_method=PUT', method='POST'>
 		Username: <input type='text' name='username' value = <%=user.username%>><br/>
@@ -14,5 +8,4 @@
 		<input type='submit' value='Edit Profile'>
 	</form>
 
-</body>
-</html>
+<%- include ../footer.ejs%>
