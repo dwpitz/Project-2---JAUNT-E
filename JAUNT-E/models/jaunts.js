@@ -2,9 +2,10 @@ const mongoose = require('mongoose')
 const Poi = require('./poi.js')
 
 const jauntSchema = new mongoose.Schema({
-	user: String/*{
-	type: mongoose.Schema.Types.ObjectId, required: true
-	}*/,
+	user: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User' 
+	},
 	location: String, // at this point just a map with the coordinates already loaded in to plug into the window on the page for googlemaps to present
 	title: String/*{
 		type: String, required: true

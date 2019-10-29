@@ -8,14 +8,18 @@ const Jaunt = require('../models/jaunts')
 //user index route
 // should we get rid of this, or only make it accessible to admins maybe?
 router.get('/', async (req, res, next) => {
-	try {
-		const foundUser = await User.find()
-		res.render('users/index.ejs', {
-			users: foundUser
-		})
-	}
-	catch (err) {
-		next(err)
+	if(req.session.loggedIn){
+		try {
+			const foundUser = await User.find()
+			res.render('users/index.ejs', {
+				users: foundUser
+			})
+		}
+		catch (err) {
+			next(err)
+		}}
+	else{
+		res.redirect('users/login')
 	}
 })
 
@@ -51,6 +55,7 @@ router.post('/login', async (req, res, next) => {
 			if(bcryptjs.compareSync(pw, foundUsers[0].password)) {
 				req.session.loggedIn = true
 				req.session.username = foundUsers[0].username
+				req.session.id = foundUsers[0]._id	
 				res.redirect('/')
 			} else {
 				console.log('bad password');
@@ -165,7 +170,8 @@ router.put('/:id', async (req, res, next) => {
 //user delete route
 router.delete('/:id', async (req, res, next) => {
 	try {
-		const deleteUser = await User.deleteOne({_id: req.params.id})
+		const deleteUser = await User.deleteOne({
+			_id: req.params.id})
 		res.redirect('/users')
 	}
 	catch (err) {

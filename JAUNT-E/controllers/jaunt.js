@@ -18,12 +18,26 @@ router.get('/', async (req, res, next) => {
 // new route
 router.get('/new', (req, res) => {
 
-	res.render('jaunts/new.ejs', {user: req.session.username})
+	res.render('jaunts/new.ejs', {
+		user: req.session.username
+	})
 })
 
 // create route
 router.post('/', (req, res, next) => {
 	try {
+		
+
+		// get user object from db based on username in session
+
+		// {
+		// 	user: foundUser
+		// 	title: 
+		// 	descript:
+		// 	asdf: req.body.asdf
+		// }
+
+
 		Jaunt.create(req.body, (err, createdJaunt) => {
 		    if (err){
 		    	next(err)
