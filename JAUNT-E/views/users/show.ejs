@@ -15,6 +15,11 @@
 		<button type='Submit'>Delete Your Profile</button>
 	</form>
 	<a href='/users/logout'>Log Out</a>
-
+	<h2>Jaunts</h2>
+	<ul>
+	<% for (let i =0; i < jaunts.length; i++){%>
+		<a href="../jaunts/<%=jaunts[i]._id%>"><li><%=jaunts[i].title%></li></a>
+	<%}%>
+	</ul>
 </body>
 </html>
