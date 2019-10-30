@@ -8,20 +8,18 @@ const Jaunt = require('../models/jaunts')
 //user index route
 // should we get rid of this, or only make it accessible to admins maybe?
 router.get('/', async (req, res, next) => {
-	if(req.session.loggedIn){
-		try {
-			const foundFaves = await Favorite.find()
-			const foundUser = await User.find()
-			res.render('users/index.ejs', {
-				users: foundUser
-			})
+		if(req.session.loggedIn){
+			try {
+				const foundFaves = await Favorite.find()
+				const foundUser = await User.findById(req.session.userId)
+				res.redirect('/users/'+foundUser._id)
+			}
+			catch (err) {
+				next(err)
+			}}
+		else{
+			res.redirect('/users/login')
 		}
-		catch (err) {
-			next(err)
-		}}
-	else{
-		res.redirect('users/login')
-	}
 })
 
 //Login Page
@@ -58,7 +56,7 @@ router.post('/login', async (req, res, next) => {
 				req.session.username = foundUsers[0].username
 				req.session.userId = foundUsers[0]._id
 				console.log(req.session,' session info')
-				res.redirect('/')
+				res.redirect('/users/'+req.session.userId)
 			} else {
 				console.log('bad password');
 				req.session.message = 'Invalid username or password'
@@ -90,7 +88,7 @@ router.post('/', async (req, res, next) => {
 		if (userSearch !== null) {
 			console.log('username is taken')
 			req.session.message = 'Username is taken!'
-			res.redirect('/register')
+			res.redirect('/')
 		} else {
 			const pw = req.body.password
 			const hashedPassword = bcryptjs.hashSync(pw, bcryptjs.genSaltSync(10))
@@ -125,53 +123,67 @@ router.get('/logout', (req, res) => {
 
 //user show route, profile page
 router.get('/:id', async (req, res, next) => {
-	console.log(req.params.id, "is the id")
-	try {
-		const foundUser = await User.findById(req.params.id)
-		const foundFaves = await Favorite.find({user: req.params.username})
-		console.log(foundFaves)
-		const foundJaunts = await Jaunt.find({user: req.params.username})
-		console.log(foundJaunts)
-		res.render('users/show.ejs', {
-			user: foundUser, faves: foundFaves, jaunts: foundJaunts
-		})
-	}
-	catch (err) {
-		next(err)
+	if (req.session.loggedIn) {
+		try {
+/*			const foundUser = await User.findById(req.params.id)*/
+			const foundFaves = await Favorite.find({user: req.session.userId})
+			console.log(foundFaves)
+			const foundJaunts = await Jaunt.find({user: req.session.userId})
+			console.log(foundJaunts)
+			res.render('users/show.ejs', {
+				faves: foundFaves, jaunts: foundJaunts, user: req.session
+			})
+		}
+		catch (err) {
+			next(err)
+		}
+	} else {
+			res.redirect('../')
 	}
 })
 
 //user edit route
-router.get('/:id/edit', async (req, res, next) => {
-	try {
-		const foundUser = await User.findById(req.params.id)
-		res.render('users/edit.ejs', {
-			user: foundUser
-		})
+/*router.get('/:id/edit', async (req, res, next) => {
+	if (req.session.loggedIn) {
+		try {
+			const foundUser = await User.findById(req.session.userId)
+			res.render('users/edit.ejs', {
+				user: foundUser
+			})
+		}
+		catch (err) {
+			next(err)
+		}}
+	else {
+		req.session.message = 'Invalid username or password'
+		res.redirect('/users/login')
 	}
-	catch (err) {
-		next(err)
-	}
-})
+})*/
 
 //user put route
-router.put('/:id', async (req, res, next) => {
-	try {
-		const foundUser = await User.findByIdAndUpdate(
-			req.params.id,
-			req.body,
-			{new: true}
-			);
-		res.redirect('/users')
-	}
-	catch (err) {
-		next(err)
+/*router.put('/:id', async (req, res, next) => {
+	if (req.session.loggedIn){
+		try {
+			const foundUser = await User.findByIdAndUpdate(
+				req.params.id,
+				req.body,
+				{new: true}
+				);
+			res.redirect('/users')
+		}
+		catch (err) {
+			next(err)
+		}
+	} else {
+	req.session.message = 'You must be logged in to do that'
+	res.redirect('/users/login')
 	}
 })
-
+*/
 //user delete route
 router.delete('/:id', async (req, res, next) => {
 	try {
+		// gotta remove affiliated faves and jaunts
 		const deleteUser = await User.deleteOne({
 			_id: req.params.id})
 		res.redirect('/users/login')
