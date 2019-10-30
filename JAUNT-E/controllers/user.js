@@ -97,7 +97,7 @@ router.post('/', async (req, res, next) => {
 			console.log('\nhere is the created user in POST /users')
 			console.log(createdUser)
 			// use session to make user be 'logged in'
-			req.session.logged = true
+			req.session.loggedIn = true
 			req.session.userId = createdUser._id	
 			req.session.username = createdUser.username
 			res.redirect('/')
