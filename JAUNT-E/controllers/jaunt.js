@@ -69,7 +69,7 @@ router.get('/:id', async (req, res, next) => {
 	try {
 		const foundFave = await Favorite.find({jauntId: req.params.id})
 		console.log(foundFave, 'found fave')
-		const foundJaunt = await Jaunt.findById(req.params.id)
+		const foundJaunt = await Jaunt.findById(req.params.id).populate('user')
 		console.log(foundJaunt, 'found jaunt')
 		res.render('jaunts/show.ejs', {jaunt: foundJaunt, faveId: foundFave._id})
 	} catch(err) {
@@ -87,8 +87,8 @@ router.get('/:id/edit', async (req, res, next) => {
 			next(err)
 		}
 	} else {
-		req.session.messaage = 'You must be logged in to edit jaunts'
-		res.redirect('../users/login')
+		req.session.message = 'You must be logged in to edit jaunts'
+		res.redirect('/users/login')
 	} 
 })
 

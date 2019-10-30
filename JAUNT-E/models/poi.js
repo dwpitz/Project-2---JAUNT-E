@@ -6,7 +6,7 @@ const poiSchema = new mongoose.Schema({
 	},
 	photo: {
 		type: String, 
-		required: true
+		// required: true
 	},
 	description: {
 		type: String, 

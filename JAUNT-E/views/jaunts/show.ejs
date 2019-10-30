@@ -10,7 +10,7 @@
 		</nav>
 			<div>
 				<h1 id='jauntH1'><%=jaunt.title%></h1>
-				<small id='jauntUser'>by <%=jaunt.user%></small><br/>
+ 				<small id='jauntUser'>by <%=jaunt.user.username%></small><br/>
 				<form method='POST' action='/favorites'> 
 					<input type="hidden" value='<%=jaunt._id%>' name="jauntId" />
 					<button>Favorite</button>
@@ -25,11 +25,20 @@
 				<p id='jauntDesc' display=block><%=jaunt.description%></p><br/>
 				<ul>
 				<% for (let i = 0; i < jaunt.poi.length; i++){%>
-					<li><%=jaunt.poi[i].title%><br/>
-						<img src='<%=jaunt.poi[i].photo%>' height=100px width=auto>
-					</li>
+				<a href="/poi/<%=jaunt.poi[i]._id%>">
+					<li><%=jaunt.poi[i].title%><br/><br/>
+					<img src='<%=jaunt.poi[i].photo%>' height=100px width=auto><br/><br/>
+					</li></a>
 				<%}%>
 				</ul>
+				<h3>Add New Places Of Interest</h3>
+				<form action='/poi', method='POST'>
+					<input type='hidden' name='jauntInfo' value='<%=jaunt._id%>'>
+					Title: <input type='text' name='title'><br/>
+					Photo: <input type='text' name='photo'><br/>
+					Description: <input type='text' name='description'><br/>
+					<input type='submit' value='Add A New Point of Interest'>
+				</form>
 			</div><br/><br/><br/><br/><br/><br/>
 		</form>
 <!--  below is attempting to implement a google road element, aborted atm --> 

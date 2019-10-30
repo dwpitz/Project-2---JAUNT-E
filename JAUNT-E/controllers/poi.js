@@ -34,12 +34,10 @@ router.get('/new', async (req, res, next) => {
 //poi Create Route
 router.post('/', async (req, res, next) => {
 	try {
-		const createdPoi = await Poi.create(req.body)
-		const jauntId = await Jaunt.findById(req.body.jauntId)
-		jauntId.poi.push(createdPoi)
-		jauntId.save((err) => {
-			if(err) next(err)
-		})
+		console.log(req.body.jauntInfo, ' req.body.jauntInfo')
+		const jauntId = await Jaunt.findById(req.body.jauntInfo)
+		jauntId.poi.push({})
+		await jauntId.save()
 		console.log(createdPoi);
 		res.redirect('/poi')
 	}
@@ -94,14 +92,18 @@ router.put('/:id', async (req, res, next) => {
 //poi delete route
 router.delete('/:id', async (req, res, next) => {
 	try {
-		const foundJaunt = await Jaunt.find({})
-		const deletePoi = await Poi.deleteOne({_id: req.params.id})
-		jauntId.poi.push(createdPoi)
-		jauntId.save((err) => {
-			if(err) next(err)
-		})
+		console.log(req.body, ' is req.body')
+		console.log(req.params, ' is req.params')
+		const foundPoi = await Poi.find(req.params._id)
+		console.log(foundPoi)
+		const foundJaunt = await Jaunt.find({poi: {$in: [req.params._id]}})
+		console.log(foundJaunt, 'is the jaunt found via reverse-search')
+		const foundAgainJaunt = await Jaunt.findOne({poi: {$in: ['5db9e24f2dd48247f0c26f35']}})
+/*		const foundJaunts = await Jaunt.find({})
+
+		const removePoi = await foundJaunt.poi.id(req.params.id).remove()
 		console.log(deletePoi);
-		res.redirect('/poi')
+*/		res.redirect('/poi')
 	}
 	catch (err) {
 		next(err)
