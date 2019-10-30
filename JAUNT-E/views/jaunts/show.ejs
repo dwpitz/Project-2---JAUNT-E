@@ -29,8 +29,10 @@
 				<% for (let i = 0; i < jaunt.poi.length; i++){%>
 				<a href="/poi/<%=jaunt.poi[i]._id%>">
 					<li><%=jaunt.poi[i].title%><br/><br/>
-					<img src='<%=jaunt.poi[i].photo%>' height=100px width=auto><br/><br/>
-					</li></a>
+					<img src='<%=jaunt.poi[i].photo%>' height="100px" width="auto">
+					<br/><br/>
+					</li>
+				</a>
 				<%}%>
 				</ul>
 				<h3>Add New Places Of Interest</h3>

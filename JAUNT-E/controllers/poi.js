@@ -34,14 +34,19 @@ router.get('/new', async (req, res, next) => {
 //poi Create Route
 router.post('/', async (req, res, next) => {
 	try {
-		console.log(req.body.jauntInfo, ' req.body.jauntInfo')
-		const jauntId = await Jaunt.findById(req.body.jauntInfo)
-		jauntId.poi.push({})
-		await jauntId.save()
-		console.log(createdPoi);
-		res.redirect('/poi')
+		console.log("req.body");
+		console.log(req.body)
+		const jaunt = await Jaunt.findById(req.body.jauntId)
+		jaunt.poi.push({
+			title: req.body.title,
+			photo: req.body.photo,
+			description: req.body.description
+			// this is an object that matches Poi Schema
+		})
+		await jaunt.save()
+		res.redirect('/jaunts/' + jaunt._id)
 	}
-	catch (err) {
+	catch (err) {	
 		next(err)
 	}
 })
@@ -51,7 +56,8 @@ router.post('/', async (req, res, next) => {
 // poi show route
 router.get('/:id', async (req, res, next) => {
 	try {
-		const foundPoi = await Poi.findById(req.params.id)
+		// const foundPoi = await Poi.findById(req.params.id)
+		// console.log(foundPoi);
 		res.render('poi/show.ejs', {
 			poi: foundPoi
 		})
