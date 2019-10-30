@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const secretInfo = require('./secretinfo.js')
+const googleMapsClient = require('@google/maps')
 
 require('./db/db')
 
