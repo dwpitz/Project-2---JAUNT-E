@@ -14,10 +14,13 @@
 				<form method='POST' action='/favorites'> 
 					<input type="hidden" value='<%=jaunt._id%>' name="jauntId" />
 					<button>Favorite</button>
-				</form> 
+				</form>
 				<form method='POST' action='/favorites/<%=faveId%>?_method=DELETE'>
 					<input type="hidden" value='<%=faveId%>' name="jauntId" />
 					<button>UnFavorite</button>
+				</form> 
+				<form action='/poi/new'>
+					<button>Add A Point Or Interest</button>
 				</form> | 
 				<a href="/jaunts/<%=jaunt._id%>/edit">Edit</a> | 
 				<form method='POST' action='/jaunts/<%=jaunt._id%>?_method=DELETE'><button value='DELETE'>Delete</button></form> </p>
