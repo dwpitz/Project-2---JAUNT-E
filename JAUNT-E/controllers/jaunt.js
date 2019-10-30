@@ -53,7 +53,14 @@ router.post('/', (req, res, next) => {
 	}
 })
 
-
+// get route for google map practice
+router.get('/googlemappractice', async (req, res, next) => {
+	try {
+		res.render('googlemapspractice.ejs')	
+	} catch(err){
+		next(err)
+	}
+})
 
 
 // show route for jaunt

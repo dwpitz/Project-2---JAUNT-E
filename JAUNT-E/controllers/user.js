@@ -10,6 +10,7 @@ const Jaunt = require('../models/jaunts')
 router.get('/', async (req, res, next) => {
 	if(req.session.loggedIn){
 		try {
+			const foundFaves = await Favorite.find()
 			const foundUser = await User.find()
 			res.render('users/index.ejs', {
 				users: foundUser
