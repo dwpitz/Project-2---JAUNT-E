@@ -11,24 +11,29 @@
 			<div>
 				<h1 id='jauntH1'><%=jaunt.title%></h1>
 				<small id='jauntUser'>by <%=jaunt.user%></small><br/>
-			<form method='POST' action='/favorites'>
-				<input type="hidden" value='<%=jaunt._id%>' name="jauntId" />
-				<button>Favorite</button></form> | 
-					<a href="/jaunts/<%=jaunt._id%>/edit">Edit</a> | 
-					<form method='POST' action='/jaunts/<%=jaunt._id%>?_method=DELETE'><button value='DELETE'>Delete</button></form> </p>
-				<img src="<%=jaunt.photo%>" height=100 width=auto id='jauntPic' align='left'>
+				<form method='POST' action='/favorites'> 
+					<input type="hidden" value='<%=jaunt._id%>' name="jauntId" />
+					<button>Favorite</button>
+				</form> 
+				<form method='POST' action='/favorites/<%=faveId%>?_method=DELETE'>
+					<input type="hidden" value='<%=faveId%>' name="jauntId" />
+					<button>UnFavorite</button>
+				</form> | 
+				<a href="/jaunts/<%=jaunt._id%>/edit">Edit</a> | 
+				<form method='POST' action='/jaunts/<%=jaunt._id%>?_method=DELETE'><button value='DELETE'>Delete</button></form> </p>
+				<img src="<%=jaunt.photo%>" height=100px width=auto id='jauntPic' align='left'>
 				<p id='jauntDesc' display=block><%=jaunt.description%></p><br/>
 				<ul>
 				<% for (let i = 0; i < jaunt.poi.length; i++){%>
 					<li><%=jaunt.poi[i].title%><br/>
-						<img src=<%=jaunt.poi[i].photo%>>
-						
-
+						<img src='<%=jaunt.poi[i].photo%>' height=100px width=auto>
 					</li>
 				<%}%>
 				</ul>
 			</div><br/><br/><br/><br/><br/><br/>
-		<div id='jauntMap' style='height:40%'>
+		</form>
+<!--  below is attempting to implement a google road element, aborted atm --> 
+<!-- 				<div id='jauntMap' style='height:40%'>
 		<script>	
 			var apiKey = 'api';
 
@@ -212,8 +217,6 @@
 
 			$(window).load(initialize);
 		</script>
-		</div>
-			
-		</form>
+		</div> -->
 	</body>
 </html>

@@ -174,7 +174,7 @@ router.delete('/:id', async (req, res, next) => {
 	try {
 		const deleteUser = await User.deleteOne({
 			_id: req.params.id})
-		res.redirect('/users')
+		res.redirect('/users/login')
 	}
 	catch (err) {
 		next(err)
