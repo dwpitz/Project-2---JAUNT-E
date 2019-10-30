@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Jaunt = require('../models/jaunts')
-// including favorites here so as to aid in creating favorites?
 const Favorite = require('../models/favorites')
+const User = require('../models/user')
 
 // index route, a list of jaunts available
 router.get('/', async (req, res, next) => {
@@ -16,55 +16,62 @@ router.get('/', async (req, res, next) => {
 
 
 // new route
-router.get('/new', (req, res) => {
-
-	res.render('jaunts/new.ejs', {
-		userId: req.session.userId
-	})
-})
-
-// create route
-router.post('/', (req, res, next) => {
+router.get('/new', (req, res, next) => {
 	try {
-		
-
-		// get user object from db based on username in session
-
-		// {
-		// 	user: foundUser
-		// 	title: 
-		// 	descript:
-		// 	asdf: req.body.asdf
-		// }
-
-
-		Jaunt.create(req.body, (err, createdJaunt) => {
-		    if (err){
-		    	next(err)
-		    } else {
-				console.log(createdJaunt)
-				res.redirect('/jaunts')    	
-		    }
+		res.render('jaunts/new.ejs', {
+			userId: req.session.userId
 		})
-
-		
 	} catch(err) {
 		next(err)
 	}
 })
 
+// create route
+router.post('/', async (req, res, next) => {
+	if (req.session.loggedIn){
+		try {		
+			// get user object from db based on username in session
+			// {
+			// 	user: foundUser
+			// 	title: 
+			// 	descript:
+			// 	asdf: req.body.asdf
+			// }
+			Jaunt.create(req.body, (err, createdJaunt) => {
+			    if (err){
+			    	next(err)
+			    } else {
+					console.log(createdJaunt)
+					res.redirect('/jaunts')    	
+			    }
+			})
+		} catch(err) {
+			next(err)
+		}
+	} else {
+		req.session.message = 'You must be logged in to create jaunts'
+		res.redirect('../users/login')
+	}
+})
+
+// get route for google map practice
+router.get('/googlemappractice', (req, res, next) => {
+	try {
+		res.render('googlemapspractice.ejs')	
+	} catch(err){
+		next(err)
+	}
+})
 
 
-
-// show route for jaunt
-
+// show route for jaunt, including showing Places of Interest
 router.get('/:id', async (req, res, next) => {
 	try {
+		const foundFave = await Favorite.find({jauntId: req.params.id})
+		console.log(foundFave, 'found fave')
 		const foundJaunt = await Jaunt.findById(req.params.id)
-		console.log(foundJaunt)
-		
-		res.render('jaunts/show.ejs', {jaunt: foundJaunt})
-		console.log(foundJaunt);
+		console.log(foundJaunt, 'found jaunt')
+		res.render('jaunts/show.ejs', {jaunt: foundJaunt, faveId: foundFave._id})
 	} catch(err) {
 		next(err)
 	}
@@ -72,42 +79,48 @@ router.get('/:id', async (req, res, next) => {
 
 // edit route for jaunt
 router.get('/:id/edit', async (req, res, next) => {
-	try {
-		const foundJaunt = await Jaunt.findById(req.params.id)
-		res.render('jaunts/edit.ejs', {jaunt: foundJaunt})	
-	} catch(err){
-		next(err)
-	}
+	if (req.session.loggedIn) {
+		try {
+			const foundJaunt = await Jaunt.findById(req.params.id)
+			res.render('jaunts/edit.ejs', {jaunt: foundJaunt})	
+		} catch(err){
+			next(err)
+		}
+	} else {
+		req.session.messaage = 'You must be logged in to edit jaunts'
+		res.redirect('../users/login')
+	} 
 })
 
 // update route for jaunt
-router.put('/:id', (req, res, next) => {
-	try {
-		Jaunt.findByIdAndUpdate(req.params.id, req.body, (err, updatedJaunt) => {
-			if (err) {
-				res.send(err)
-			} else {
-				res.redirect('/jaunts')
-			}		    
-		})
-	} catch(err){
-		next(err)
+router.put('/:id', async (req, res, next) => {
+	if (req.session.loggedIn) {
+		try {
+			const updatedJaunt = await Jaunt.findByIdAndUpdate(req.params.id, req.body)
+			console.log(updatedJaunt)
+			res.redirect('/jaunts')		    
+		} catch(err){
+			next(err)
+		}
+	} else {
+		req.session.messaage = 'You must be logged in to update jaunts'
+		res.redirect('../users/login')	
 	}
 })
 
 // delete route for jaunt
-router.delete('/:id', (req, res, next) => {
-	try {
-		Jaunt.findByIdAndRemove(req.params.id, (err, deletedJaunt) => {
-		    if (err) {
-		    	res.send(err)
-		    } else {
-		    	console.log(deletedJaunt, ' was deleted')
-		    	res.redirect('/jaunts')
-		    }
-		})
-	} catch(err){
-		next(err)
+router.delete('/:id', async (req, res, next) => {
+	if (req.session.loggedIn){
+		try {
+			const deletedJaunt = await Jaunt.findByIdAndRemove(req.params.id)
+		  	console.log(deletedJaunt, ' was deleted')
+	    	res.redirect('/jaunts')
+		} catch(err){
+			next(err)
+		}
+	} else {
+		req.session.message = 'You must be logged in to delete jaunts'
+		res.redirect('../users/login')
 	}
 })
 

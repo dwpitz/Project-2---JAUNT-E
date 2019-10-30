@@ -94,7 +94,12 @@ router.put('/:id', async (req, res, next) => {
 //poi delete route
 router.delete('/:id', async (req, res, next) => {
 	try {
+		const foundJaunt = await Jaunt.find({})
 		const deletePoi = await Poi.deleteOne({_id: req.params.id})
+		jauntId.poi.push(createdPoi)
+		jauntId.save((err) => {
+			if(err) next(err)
+		})
 		console.log(deletePoi);
 		res.redirect('/poi')
 	}
