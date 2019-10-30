@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<title><%=jaunt.title%></title>
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	</head>
 	<body>
 		<nav>
@@ -30,18 +29,20 @@
 				<% for (let i = 0; i < jaunt.poi.length; i++){%>
 				<a href="/poi/<%=jaunt.poi[i]._id%>">
 					<li><%=jaunt.poi[i].title%><br/><br/>
-					<img src='<%=jaunt.poi[i].photo%>' height=100px width=auto><br/><br/>
-					</li></a>
+					<img src='<%=jaunt.poi[i].photo%>' height="100px" width="auto">
+					<br/><br/>
+					</li>
+				</a>
 				<%}%>
 				</ul>
 				<h3>Add New Places Of Interest</h3>
-				<form action='/poi', method='POST'>
-					<input type='hidden' name='jauntInfo' value='<%=jaunt._id%>'>
+<!-- 				<form action='/poi', method='POST'>
+					<input type='hidden' name='jauntInfo' value='jaunt._id'>
 					Title: <input type='text' name='title'><br/>
 					Photo: <input type='text' name='photo'><br/>
 					Description: <input type='text' name='description'><br/>
 					<input type='submit' value='Add A New Point of Interest'>
-				</form>
+				</form> -->
 			</div><br/><br/><br/><br/><br/><br/>
 		</form>
 <!--  below is attempting to implement a google road element, aborted atm --> 
