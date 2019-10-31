@@ -17,12 +17,18 @@ router.get('/', async (req, res, next) => {
 
 // new route
 router.get('/new', (req, res, next) => {
-	try {
-		res.render('jaunts/new.ejs', {
-			userId: req.session.userId
-		})
-	} catch(err) {
-		next(err)
+	if (req.session.loggedIn){
+			try {
+				res.render('jaunts/new.ejs', {
+					userId: req.session.userId
+				})
+			} catch(err) {
+				next(err)
+			}
+		}
+	else {
+		req.session.message = 'You must be logged in to add jaunts'
+		res.redirect('../users/login')
 	}
 })
 
