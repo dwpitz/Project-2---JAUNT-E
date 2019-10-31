@@ -46,18 +46,13 @@ router.delete('/:id', async (req, res, next) => {
 /*	console.log('hitting unfavorite route')
 	const alreadyFave = await Favorite.find({userId: req.session.userId, jauntId: req.body.id})
 	console.log(alreadyFave, 'is already a favorite')
-*/	if (req.session.loggedIn ){//&& alreadyFave){
+*/	if (req.session.loggedIn ){
 		try {
 			const foundJaunt = await Jaunt.findById(req.body.jauntId)
-			console.log('\n current req.params output via favorite delete route ',req.params)
 			const findFave = await Favorite.find({_id: req.params.id})
-			console.log('\n log of fave found via req.params.id, use this in delete?', findFave)
 			const foundUser = await User.findById(req.session.userId)			
-			console.log('\n user found by search in favorite delete route ',foundUser)
-			console.log('\n jaunt found via search in favorite delete route', foundJaunt)
-/*			const deletedFave = await Favorite.findByAndRemove({_id: findFave})
-			console.log('\n deleted fave: ',deletedFave)
-*/			res.redirect('/jaunts')
+			const deletedFave = await Favorite.findByIdAndRemove(findFave)
+			res.redirect('/jaunts')
 		} catch(err){
 			next(err)
 		}
