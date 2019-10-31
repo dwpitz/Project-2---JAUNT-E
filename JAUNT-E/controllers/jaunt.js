@@ -81,15 +81,7 @@ router.get('/:id', async (req, res, next) => {
 	}
 })
 
-// show route for poi
-router.get('/:id/:index', async (req, res, next) => {
-	try {
-		const foundJaunt = await Jaunt.findById(req.params.id)
-		res.render('poi/show.ejs', {poi: foundJaunt.poi[req.params.index]})		
-	} catch(err){
-		next(err)
-	}
-})
+
 
 // edit route for jaunt
 router.get('/:id/edit', async (req, res, next) => {
@@ -135,6 +127,16 @@ router.delete('/:id', async (req, res, next) => {
 	} else {
 		req.session.message = 'You must be logged in to delete jaunts'
 		res.redirect('../users/login')
+	}
+})
+
+// show route for poi
+router.get('/:id/:index', async (req, res, next) => {
+	try {
+		const foundJaunt = await Jaunt.findById(req.params.id)
+		res.render('poi/show.ejs', {poi: foundJaunt.poi[req.params.index]})		
+	} catch(err){
+		next(err)
 	}
 })
 
