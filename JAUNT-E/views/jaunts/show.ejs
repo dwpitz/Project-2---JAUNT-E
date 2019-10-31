@@ -9,7 +9,7 @@
 		</nav>
 			<div>
 				<h1 id='jauntH1'><%=jaunt.title%></h1>
- 				<small id='jauntUser'>by <%=jaunt.user.username%></small><br/>
+ 				<small id='jauntUser'>by <%=username%></small><br/>
 				<form method='POST' action='/favorites'> 
 					<input type="hidden" value='<%=jaunt._id%>' name="jauntId" />
 					<button>Favorite</button>

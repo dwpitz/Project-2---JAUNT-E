@@ -54,7 +54,7 @@ router.post('/', async (req, res, next) => {
 
 
 // poi show route
-router.get('/:id', async (req, res, next) => {
+router.get('/jaunts/:id', async (req, res, next) => {
 	try {
 		// const foundPoi = await Poi.findById(req.params.id)
 		// console.log(foundPoi);
