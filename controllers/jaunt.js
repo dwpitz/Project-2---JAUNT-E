@@ -190,7 +190,7 @@ router.delete('/:id/:index', async (req, res, next) => {
 
 		console.log(foundJaunt.poi);
 		foundJaunt.save()
-		res.redirect('/jaunts')
+		res.redirect('/jaunts/'+ req.params.id)
 
 		//find the jaunt
 		//splice it out of the array
