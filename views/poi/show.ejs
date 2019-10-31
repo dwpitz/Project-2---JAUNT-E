@@ -4,36 +4,6 @@
 	<title>Point Of Interest Page</title>
 	<h1>Point Of Interest Page For <%=poi.title%></h1>
 	<!--This can obviously move to a CSS page.  It's just sitting here while I try and get maps working.-->
-	<style>
-		* {
-			margin: 0;
-			padding: 0;
-
-		}
-		#map {
-			height: 500px;
-			width: 800px;
-		}
-
-	</style>
-
-<body>
-	
-	<div id='map'></div>
-<script>
-	function initMap(){
-		let location = {lat: 41.917492, lng: -87.710949};
-		let map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 18,
-			center: location
-		})
-		let marker = new google.maps.Marker({position: location, map: map})
-	}
-</script>
-<script async defer
-	src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDjvCG1Sg7ya5nXh9Yq4H46vFpxQ2h_NgY&callback=initMap">
-</script>
-
 
 <form action='/poi/<%=poi._id%>/edit'>
 	<button type='Submit'>Edit This Place of Interest</button>
@@ -43,3 +13,5 @@
 </form>
 
 <%- include ../footer.ejs%>
+
+

@@ -68,12 +68,10 @@ router.get('/:id', async (req, res, next) => {
 	try {
 		const foundFave = await Favorite.find({jauntId: req.params.id})
 		const foundJaunt = await Jaunt.findById(req.params.id)
-		const foundUser = await User.findById(foundJaunt.user)
-
+		console.log('\n favorites found ',foundFave)
 		res.render('jaunts/show.ejs', {
 			jaunt: foundJaunt,
-			fave: foundFave[0],
-			username: foundUser.username
+			fave: foundFave[0]
 		})
 
 	} catch(err) {

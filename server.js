@@ -1,10 +1,11 @@
+require('dotenv').config()
+console.log(process.env)
 const express = require('express')
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
-const secretInfo = require('./secretinfo.js')
 
 // const googleMapsClient = require('@google/maps')
 
@@ -17,7 +18,7 @@ require('./db/db')
 // middleware
 
 app.use(session({
-	secret: secretInfo,
+	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: false
 }))
