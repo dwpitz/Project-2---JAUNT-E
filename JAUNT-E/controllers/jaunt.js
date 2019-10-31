@@ -68,14 +68,8 @@ router.get('/googlemappractice', (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
 	try {
 		const foundFave = await Favorite.find({jauntId: req.params.id})
-		console.log(foundFave, 'found fave')
-
-		console.log(req.params, 'logging params');
 		const foundJaunt = await Jaunt.findById(req.params.id)
-		console.log('\nJaunt found by req.params.id', foundJaunt);
 		const foundUser = await User.findById(foundJaunt.user)
-		// const foundJaunt = await Jaunt.findById(req.params.id).populate('user').exec()
-		// console.log(foundJaunt, 'found jaunt')
 		res.render('jaunts/show.ejs', {
 			jaunt: foundJaunt,
 			faveId: foundFave._id,
@@ -87,13 +81,14 @@ router.get('/:id', async (req, res, next) => {
 	}
 })
 
+// show route for poi
 router.get('/:id/:index', async (req, res, next) => {
-    try {
-        const foundJaunt = await Jaunt.findById(req.params.id)
-        res.render('poi/show.ejs', {poi: foundJaunt.poi[req.params.index]})        
-    } catch(err){
-        next(err)
-    }
+	try {
+		const foundJaunt = await Jaunt.findById(req.params.id)
+		res.render('poi/show.ejs', {poi: foundJaunt.poi[req.params.index]})		
+	} catch(err){
+		next(err)
+	}
 })
 
 // edit route for jaunt
