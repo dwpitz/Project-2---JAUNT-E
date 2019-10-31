@@ -68,12 +68,10 @@ router.get('/:id', async (req, res, next) => {
 	try {
 		const foundFave = await Favorite.find({jauntId: req.params.id})
 		const foundJaunt = await Jaunt.findById(req.params.id)
-		const foundUser = await User.findById(foundJaunt.user)
-
+		console.log('\n favorites found ',foundFave)
 		res.render('jaunts/show.ejs', {
 			jaunt: foundJaunt,
-			fave: foundFave[0],
-			username: foundUser.username
+			fave: foundFave[0]
 		})
 
 	} catch(err) {
@@ -116,14 +114,10 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
 	if (req.session.loggedIn){
 		try {
-			console.log('\n req.params.title ', req.params)
 			const foundJaunt = await Jaunt.find({_id: req.params.id})
-			console.log('\n foundJaunt ',foundJaunt)
-			const deletedFaves = await Favorite.find({jauntId: foundJaunt})
-			console.log('\n faves affiliated with this jaunt ',deletedFaves)
-/*			const deletedJaunt = await Jaunt.findByIdAndRemove(req.params.id)
-		  	console.log(deletedJaunt, ' was deleted')
-*/	    	res.redirect('/jaunts')
+			const deletedFaves = await Favorite.findByIdAndRemove({jauntId: foundJaunt})
+			const deletedJaunt = await Jaunt.findByIdAndRemove(req.params.id)
+	    	res.redirect('/jaunts')
 		} catch(err){
 			next(err)
 		}

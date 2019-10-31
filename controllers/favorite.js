@@ -49,7 +49,6 @@ router.delete('/:id', async (req, res, next) => {
 			const findFave = await Favorite.find({_id: req.params.id})
 			const foundUser = await User.findById(req.session.userId)			
 			const deletedFave = await Favorite.findByIdAndRemove(findFave)
-			console.log('\n deleted fave: ',deletedFave)
 			res.redirect('/jaunts')
 		} catch(err){
 			next(err)

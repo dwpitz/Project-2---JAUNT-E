@@ -146,7 +146,10 @@ router.get('/:id', async (req, res, next) => {
 //user delete route
 router.delete('/:id', async (req, res, next) => {
 	try {
-		// gotta remove affiliated faves and jaunts
+		// gotta remove affiliated faves
+
+		const deletedFaves = await Favorite.deleteMany({user: req.params.id})
+		console.log('\n affiliated faves with this user to be deleted ', deletedFaves)
 		const deleteUser = await User.deleteOne({
 			_id: req.params.id})
 		res.redirect('/users/login')

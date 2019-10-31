@@ -27,4 +27,13 @@ li {
 
 h1 {
 	font-family: 'Permanent Marker', cursive;
+	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  	-webkit-text-stroke-width: 1px;
+  	-webkit-text-stroke-color: black;
 }
+
+body {
+	background-image: url('../images/splash.jpg');
+	background-position: center;
+}
+

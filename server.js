@@ -7,12 +7,6 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 
-// const googleMapsClient = require('@google/maps')
-
-/*const jsdom = require('jsdom') // attempting to incorporate DOM via node for Jquery to load google roads
-const jquery = require('jquery') // attempting to load jquery to use google roads api code
-*/
-
 require('./db/db')
 
 // middleware
