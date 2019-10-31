@@ -43,10 +43,7 @@ router.post('/', async (req, res, next) => {
 
 // delete route available on Jaunt show page
 router.delete('/:id', async (req, res, next) => {
-/*	console.log('hitting unfavorite route')
-	const alreadyFave = await Favorite.find({userId: req.session.userId, jauntId: req.body.id})
-	console.log(alreadyFave, 'is already a favorite')
-*/	if (req.session.loggedIn ){
+	if (req.session.loggedIn ){
 		try {
 			const foundJaunt = await Jaunt.findById(req.body.jauntId)
 			const findFave = await Favorite.find({_id: req.params.id})
