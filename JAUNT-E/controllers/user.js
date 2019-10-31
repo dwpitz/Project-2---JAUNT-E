@@ -142,44 +142,7 @@ router.get('/:id', async (req, res, next) => {
 	}
 })
 
-//user edit route
-/*router.get('/:id/edit', async (req, res, next) => {
-	if (req.session.loggedIn) {
-		try {
-			const foundUser = await User.findById(req.session.userId)
-			res.render('users/edit.ejs', {
-				user: foundUser
-			})
-		}
-		catch (err) {
-			next(err)
-		}}
-	else {
-		req.session.message = 'Invalid username or password'
-		res.redirect('/users/login')
-	}
-})*/
 
-//user put route
-/*router.put('/:id', async (req, res, next) => {
-	if (req.session.loggedIn){
-		try {
-			const foundUser = await User.findByIdAndUpdate(
-				req.params.id,
-				req.body,
-				{new: true}
-				);
-			res.redirect('/users')
-		}
-		catch (err) {
-			next(err)
-		}
-	} else {
-	req.session.message = 'You must be logged in to do that'
-	res.redirect('/users/login')
-	}
-})
-*/
 //user delete route
 router.delete('/:id', async (req, res, next) => {
 	try {

@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Landing Page</title>
-	</head>
-	<body>
-		<nav>
-			<a href='/'>Home</a> | <a href='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/poi">Places Of Interest</a> | <a href="/favorites">Favorites</a>
-		</nav>
+<%- include header.ejs%>
+		<h1>Most Recent Jaunts</h1>
+		<UL>
+		<% for (let i = 0; i < jaunts.length; i++){%>
+			<a href="/jaunts/<%=jaunts[i]._id%>"><li><%=jaunts[i].title%></li></a>
+		<%}%>
+		</UL>
+		<h1>Curated Jaunts by Waldo</h1>
+		<UL>
+		<% for (let i = 0; i < faves.length; i++){%>
+			<a href="/jaunts/<%=faves[i].jauntId%>"><li><%=faves[i].title%></li>
+		<%}%>
+		</UL>
 
-		Login Options
-		<h1>Most Recent Jaunts | Curated Jaunts</h1>
-
-	</body>
-</html>
+<%- include footer.ejs%>

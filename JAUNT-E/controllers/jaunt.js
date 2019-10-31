@@ -17,12 +17,18 @@ router.get('/', async (req, res, next) => {
 
 // new route
 router.get('/new', (req, res, next) => {
-	try {
-		res.render('jaunts/new.ejs', {
-			userId: req.session.userId
-		})
-	} catch(err) {
-		next(err)
+	if (req.session.loggedIn){
+			try {
+				res.render('jaunts/new.ejs', {
+					userId: req.session.userId
+				})
+			} catch(err) {
+				next(err)
+			}
+		}
+	else {
+		req.session.message = 'You must be logged in to add jaunts'
+		res.redirect('../users/login')
 	}
 })
 
@@ -30,13 +36,6 @@ router.get('/new', (req, res, next) => {
 router.post('/', async (req, res, next) => {
 	if (req.session.loggedIn){
 		try {		
-			// get user object from db based on username in session
-			// {
-			// 	user: foundUser
-			// 	title: 
-			// 	descript:
-			// 	asdf: req.body.asdf
-			// }
 			Jaunt.create(req.body, (err, createdJaunt) => {
 			    if (err){
 			    	next(err)
@@ -68,11 +67,13 @@ router.get('/googlemappractice', (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
 	try {
 		const foundFave = await Favorite.find({jauntId: req.params.id})
+		console.log('\n found fave used for favorite delete route ',foundFave[0])
 		const foundJaunt = await Jaunt.findById(req.params.id)
 		const foundUser = await User.findById(foundJaunt.user)
+
 		res.render('jaunts/show.ejs', {
 			jaunt: foundJaunt,
-			faveId: foundFave._id,
+			fave: foundFave[0],
 			username: foundUser.username
 		})
 
@@ -80,8 +81,6 @@ router.get('/:id', async (req, res, next) => {
 		next(err)
 	}
 })
-
-
 
 // edit route for jaunt
 router.get('/:id/edit', async (req, res, next) => {
@@ -118,9 +117,14 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
 	if (req.session.loggedIn){
 		try {
-			const deletedJaunt = await Jaunt.findByIdAndRemove(req.params.id)
+			console.log('\n req.params.title ', req.params)
+			const foundJaunt = await Jaunt.find({_id: req.params.id})
+			console.log('\n foundJaunt ',foundJaunt)
+			const deletedFaves = await Favorite.find({jauntId: foundJaunt})
+			console.log('\n faves affiliated with this jaunt ',deletedFaves)
+/*			const deletedJaunt = await Jaunt.findByIdAndRemove(req.params.id)
 		  	console.log(deletedJaunt, ' was deleted')
-	    	res.redirect('/jaunts')
+*/	    	res.redirect('/jaunts')
 		} catch(err){
 			next(err)
 		}
