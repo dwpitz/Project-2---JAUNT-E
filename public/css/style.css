@@ -1,3 +1,30 @@
+body {
+	display: flex;
+	align-content: center;
+	border-style: dashed;
+	width: 600px;
+	text-align: center
+}
+
+nav {
+	text-align: center;
+	justify-content: space-between;
+
+
+}
+
+li {
+	list-style-type: none;
+}
+
+.navigation {
+	flex-direction: row;
+	padding: 40px;
+
+	
+
+}
+
 h1 {
 	font-family: 'Permanent Marker', cursive;
 }
