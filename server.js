@@ -1,9 +1,5 @@
 require('dotenv').config()
-<<<<<<< HEAD:server.js
 console.log(process.env)
-=======
-console.log(process.env);
->>>>>>> 0b5729c462e1d5b435e3d1cfb2d6f54f9a812b15:server.js
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT
