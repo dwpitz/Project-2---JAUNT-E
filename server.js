@@ -23,6 +23,8 @@ app.use(session({
 	saveUninitialized: false
 }))
 
+app.use(express.static('public'))
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(methodOverride('_method'))
 /*app.use(jquery) // (window) ? for google roads api
