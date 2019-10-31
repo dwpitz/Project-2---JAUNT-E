@@ -70,8 +70,7 @@ router.get('/:id', async (req, res, next) => {
 		const foundFave = await Favorite.find({jauntId: req.params.id})
 		const foundJaunt = await Jaunt.findById(req.params.id)
 		const foundUser = await User.findById(foundJaunt.user)
-		// const foundJaunt = await Jaunt.findById(req.params.id).populate('user').exec()
-		// console.log(foundJaunt, 'found jaunt')
+
 		res.render('jaunts/show.ejs', {
 			jaunt: foundJaunt,
 			faveId: foundFave._id,
@@ -92,7 +91,6 @@ router.get('/:id/:index', async (req, res, next) => {
 		next(err)
 	}
 })
-
 
 // edit route for jaunt
 router.get('/:id/edit', async (req, res, next) => {
