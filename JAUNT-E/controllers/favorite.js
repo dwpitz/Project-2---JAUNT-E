@@ -25,9 +25,18 @@ router.post('/', async (req, res, next) => {
 		try {
 			const foundJaunt = await Jaunt.findById(req.body.jauntId)
 			const foundUser = await User.findById(req.session.userId)
-			const alreadyFave = await Favorite.find({jauntId: foundJaunt._id, user: foundUser._id})
-			if (!alreadyFave) {
-				const createdFave = await Favorite.create({jauntId: foundJaunt._id, title: foundJaunt.title, user: foundUser._id})
+			console.log('\n here is the session userId ',req.session.userId)
+			const alreadyFave = await Favorite.find({jauntId: foundJaunt._id, user: req.session.userId})
+			console.log('\n here is foundJaunt ', foundJaunt)
+			console.log('\n here is foundUser ',foundUser)
+			console.log('\n here is alreadyFave ',alreadyFave)
+			/*const createdFave = await Favorite.create({jauntId: foundJaunt._id, title: foundJaunt.title, user: req.session.userId})
+				console.log(createdFave)*/
+
+				//trying to think through unfavorite logic, not the most important, just ridic if we don't have it
+			res.redirect('/jaunts')
+	/*		if (!alreadyFave) {
+				const createdFave = await Favorite.create({jauntId: foundJaunt._id, title: foundJaunt.title, user: req.session.id})
 				console.log(createdFave)
 				res.redirect('/jaunts')
 			} else {
@@ -37,7 +46,7 @@ router.post('/', async (req, res, next) => {
 				console.log('here is where we put unfavorite logic')
 				res.redirect('/jaunts')
 			}
-		} catch(err) {
+	*/	} catch(err) {
 			next(err)	
 		}
 	} else {

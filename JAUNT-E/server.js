@@ -40,13 +40,21 @@ app.use('/poi', poiController)
 const userController = require('./controllers/user.js')
 app.use('/users', userController)
 
+// loading models for populating landing page
+const Jaunt = require('./models/jaunts.js')
+const Favorite = require('./models/favorites.js')
+const User = require('./models/user.js')
 
-app.get('/', (req, res, next) => {
+// home page 
+app.get('/', async (req, res, next) => {
 	try {
-		res.render('home.ejs')
+		const findWaldo = await User.find({username: 'Waldo'})
+		const foundJaunts = await Jaunt.find({})
+		const foundFaves = await Favorite.find({user: findWaldo[0]._id})
+		res.render('home.ejs', {jaunts: foundJaunts, faves: foundFaves})
 	} catch(err) {
 		next(err)
-}
+	}
 })
 
 
