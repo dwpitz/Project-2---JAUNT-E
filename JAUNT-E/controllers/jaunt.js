@@ -67,7 +67,6 @@ router.get('/googlemappractice', (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
 	try {
 		const foundFave = await Favorite.find({jauntId: req.params.id})
-		console.log('\n found fave used for favorite delete route ',foundFave[0])
 		const foundJaunt = await Jaunt.findById(req.params.id)
 		const foundUser = await User.findById(foundJaunt.user)
 
