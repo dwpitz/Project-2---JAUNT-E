@@ -79,7 +79,6 @@ router.get('/:id', async (req, res, next) => {
 	}
 })
 
-
 // edit route for jaunt
 router.get('/:id/edit', async (req, res, next) => {
 	if (req.session.loggedIn) {
@@ -129,6 +128,74 @@ router.delete('/:id', async (req, res, next) => {
 	} else {
 		req.session.message = 'You must be logged in to delete jaunts'
 		res.redirect('../users/login')
+	}
+})
+
+// // delete route for jaunt
+// router.delete('/:id/:index', async (req, res, next) => {
+// 	try {
+
+		
+		
+
+
+
+// 		//find the jaunt with a specific poi ID.
+// 		// const foundPoi = await Poi.find({foundJaunt, _id: '5db8594e60f4639dcc7feb90'})
+// 		// console.log(foundPoi);
+// 		//remove the poi ID from the jaunt
+
+
+// 		// console.log(Poi.find({foundJaunt, _id: '5db8594e60f4639dcc7feb90'}), 'the id of POI');
+// 		// const deletePoi = await Poi.deleteOne({_id: req.params.id})
+// 		// console.log(deletePoi, 'deletePoi');
+// 		// jauntId.poi.push(createdPoi)
+// 		// console.log(createdPoi, 'createdPoi')
+// 		// jauntId.save((err) => {
+// 		// 	if(err) next(err)
+// 		// })
+// 		// console.log(deletePoi);
+// 		// res.redirect('/poi')
+
+// 		// console.log(req.params, ' is req.params')
+// 		const foundPoi = await Jaunt.find(req.params._id)
+// 		console.log(foundPoi, 'foundPoi');
+// 		// const foundIndex = await foundPoi(req.params.index)
+// 		// console.log(foundIndex, 'this is the');
+// 		// const foundPoi = await Poi.find(req.params._id)
+// 		// console.log(foundPoi)
+// // 		const foundJaunt = await Jaunt.find({poi: {$in: [req.params._id]}})
+// // 		console.log(foundJaunt, 'is the jaunt found via reverse-search')
+// // 		const foundAgainJaunt = await Jaunt.findOne({poi: {$in: ['5db9e24f2dd48247f0c26f35']}})
+// // /*		const foundJaunts = await Jaunt.find({})
+
+// 		// const removePoi = await foundJaunt.poi.id(req.params.id).remove()
+// 		// console.log(deletePoi);
+// 		// res.redirect('/poi')
+
+// 	}
+// 	catch (err) {
+// 		next(err)
+// 	}
+// })
+
+
+router.delete('/:id/:index', async (req, res, next) => {
+	try {	
+		const foundJaunt = await Jaunt.findById(req.params.id)
+		const poiIndex = req.params.index
+		foundJaunt.poi.splice(poiIndex, 1)
+
+		console.log(foundJaunt.poi);
+		foundJaunt.save()
+		res.redirect('/jaunts/'+ req.params.id)
+
+		//find the jaunt
+		//splice it out of the array
+		//save the jaunt 
+	}
+	catch (err) {
+		next(err)
 	}
 })
 

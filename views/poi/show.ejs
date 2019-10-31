@@ -3,8 +3,6 @@
 </a> | <a href="/favorites">Favorites</a>
 	<title>Point Of Interest Page</title>
 	<h1>Point Of Interest Page For <%=poi.title%></h1>
-	<!--This can obviously move to a CSS page.  It's just sitting here while I try and get maps working.-->
-
 <form action='/poi/<%=poi._id%>/edit'>
 	<button type='Submit'>Edit This Place of Interest</button>
 </form>
@@ -13,5 +11,3 @@
 </form>
 
 <%- include ../footer.ejs%>
-
-
