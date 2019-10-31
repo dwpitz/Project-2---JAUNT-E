@@ -9,7 +9,6 @@
 		</nav>
 			<div>
 				<h1 id='jauntH1'><%=jaunt.title%></h1>
- 				<small id='jauntUser'>by <%=username%></small><br/>
 				<% if (fave) {%>
                 	<form method='POST' action='/favorites/<%=fave._id%>?_method=DELETE'>
                     	<button value='Unfavorite'>UnFavorite</button>
