@@ -1,28 +1,26 @@
-body {
-	display: flex;
-	align-content: center;
-	border-style: dashed;
-	width: 600px;
-	text-align: center
+body { 
+	background-image: url('../images/splash.jpg');
+	background-position: center;
+	display: flex-inline;
+	justify-content: center;
 }
 
 nav {
-	text-align: center;
-	justify-content: space-between;
-
-
+	width: 70%;
+/*	flex-direction: row;*/
+	border-radius: 10px;
+	border-style: dashed;
 }
 
 li {
 	list-style-type: none;
+	font-weight: thick;
+	font-color: white;
 }
 
 .navigation {
-	flex-direction: row;
+/*	flex-direction: row;*/
 	padding: 40px;
-
-	
-
 }
 
 h1 {
@@ -32,8 +30,4 @@ h1 {
   	-webkit-text-stroke-color: black;
 }
 
-body {
-	background-image: url('../images/splash.jpg');
-	background-position: center;
-}
 

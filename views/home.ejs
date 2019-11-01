@@ -1,15 +1,19 @@
 <%- include header.ejs%>
+	<div class='container'>
 		<h1>Most Recent Jaunts</h1>
 		<UL>
 		<% for (let i = 0; i < jaunts.length; i++){%>
 			<a href="/jaunts/<%=jaunts[i]._id%>"><li><%=jaunts[i].title%></li></a>
 		<%}%>
 		</UL>
+	</div>
+	<div class="container">
 		<h1>Curated Jaunts by Waldo</h1>
 		<UL>
 		<% for (let i = 0; i < faves.length; i++){%>
 			<a href="/jaunts/<%=faves[i].jauntId%>"><li><%=faves[i].title%></li>
 		<%}%>
 		</UL>
+	</div>
 
 <%- include footer.ejs%>
