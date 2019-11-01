@@ -1,28 +1,26 @@
 body {
-	display: flex;
-	align-content: center;
-	border-style: dashed;
-	width: 600px;
-	text-align: center
+	background-image: url('../images/splash.jpg');
+	background-position: center;
 }
 
 nav {
-	text-align: center;
+	display: flex;
 	justify-content: space-between;
+	align-content: center
+	align-items: center;
+}
 
+.logo {
+	display: flex;
 
+}
+
+.navigation {
+	display: flex;
 }
 
 li {
 	list-style-type: none;
-}
-
-.navigation {
-	flex-direction: row;
-	padding: 40px;
-
-	
-
 }
 
 h1 {
@@ -30,10 +28,5 @@ h1 {
 	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
   	-webkit-text-stroke-width: 1px;
   	-webkit-text-stroke-color: black;
-}
-
-body {
-	background-image: url('../images/splash.jpg');
-	background-position: center;
 }
 
