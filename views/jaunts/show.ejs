@@ -1,7 +1,8 @@
 
 <%- include ../header.ejs%>%>
 
-			<div>
+			<div class="home">
+			<div class="contentbox">
 				<h1 id='jauntH1'><%=jaunt.title%></h1>
 				<% if (fave) {%>
                 	<form method='POST' action='/favorites/<%=fave._id%>?_method=DELETE'>
@@ -15,8 +16,8 @@
                 <%}%>
 				<form action='/poi/new'>
 					<button>Add A Point Or Interest</button>
-				</form> | 
-				<a href="/jaunts/<%=jaunt._id%>/edit">Edit</a> | 
+				</form>
+				<a href="/jaunts/<%=jaunt._id%>/edit">Edit</a>
 				<form method='POST' action='/jaunts/<%=jaunt._id%>?_method=DELETE'><button value='DELETE'>Delete</button></form> </p>
 				<img src="<%=jaunt.photo%>" height=100px width=auto id='jauntPic' align='left'>
 				<p id='jauntDesc' display=block><%=jaunt.description%></p><br/>
@@ -30,7 +31,7 @@
 				</a>
 				<%}%>
 				</ul>
-				<h3>Add New Places Of Interest</h3>
+<!-- 				<h3>Add New Places Of Interest</h3> -->
 <!-- 				<form action='/poi', method='POST'>
 					<input type='hidden' name='jauntInfo' value='jaunt._id'>
 					Title: <input type='text' name='title'><br/>
@@ -38,7 +39,9 @@
 					Description: <input type='text' name='description'><br/>
 					<input type='submit' value='Add A New Point of Interest'>
 				</form> -->
-			</div><br/><br/><br/><br/><br/><br/>
+			</div>
+			</div>
+			<br/><br/><br/><br/><br/><br/>
 		</form>
 
 <%- include ../footer.ejs%>

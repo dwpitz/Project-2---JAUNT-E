@@ -1,10 +1,15 @@
 <%- include ../header.ejs%>
+<div class="home">
+<div class="contentbox">
 		</nav>
 		<h1>Favorites</h1>
 		<ul>
 			<% for (let i = 0 ; i < faves.length; i++){%>
-			<li><a hef="jaunts/<%=faves[i].jauntId%>"><%=faves[i].title%></li>
+			<li><a href="jaunts/<%=faves[i].jauntId%>"><%=faves[i].title%></li>
 			<%}%>
 		</ul>
+</div>
+</div>
+
 
 <%- include ../footer.ejs%>
