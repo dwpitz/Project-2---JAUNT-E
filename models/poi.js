@@ -11,14 +11,6 @@ const poiSchema = new mongoose.Schema({
 	description: {
 		type: String, 
 		required: true
-	// },
- //    lat: {
- //    	type: Number, 
- //    	required: true
- //    },
- //    lng: {
- //    	type: Number, 
- //    	required: true}
 	}
 })
 
