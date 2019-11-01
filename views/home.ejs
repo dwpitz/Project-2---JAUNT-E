@@ -1,19 +1,20 @@
-<%- include header.ejs%>
-	<div class='container'>
-		<h1>Most Recent Jaunts</h1>
+<%-include header.ejs%>
+<div class="home">
+	<div class="contentbox">
+		<h1>Most Recent Jaunts</h1><br>
 		<UL>
 		<% for (let i = 0; i < jaunts.length; i++){%>
-			<a href="/jaunts/<%=jaunts[i]._id%>"><li><%=jaunts[i].title%></li></a>
+			<a href="/jaunts/<%=jaunts[i]._id%>" class="featured"><li><%=jaunts[i].title%></li></a>
 		<%}%>
 		</UL>
 	</div>
-	<div class="container">
-		<h1>Curated Jaunts by Waldo</h1>
+	<div class="contentbox">
+		<h1>Curated Jaunts by Waldo</h1><br>
 		<UL>
 		<% for (let i = 0; i < faves.length; i++){%>
-			<a href="/jaunts/<%=faves[i].jauntId%>"><li><%=faves[i].title%></li>
+			<a href="/jaunts/<%=faves[i].jauntId%>" class="featured"><li><%=faves[i].title%></li><br>
 		<%}%>
 		</UL>
 	</div>
-
+</div>
 <%- include footer.ejs%>

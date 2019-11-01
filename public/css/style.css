@@ -1,26 +1,22 @@
-body { 
+
+body {
 	background-image: url('../images/splash.jpg');
 	background-position: center;
-	display: flex-inline;
-	justify-content: center;
+	width: 100%;
+	text-decoration: none;
+
 }
 
 nav {
-	width: 70%;
-/*	flex-direction: row;*/
-	border-radius: 10px;
-	border-style: dashed;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 li {
 	list-style-type: none;
 	font-weight: thick;
 	font-color: white;
-}
-
-.navigation {
-/*	flex-direction: row;*/
-	padding: 40px;
 }
 
 h1 {
@@ -31,3 +27,72 @@ h1 {
 }
 
 
+
+.navigation {
+	display: flex;
+	font-size: 30px;
+	background-color: rgba(235,182,193, .5);
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	padding: 30px;
+
+}
+
+.buttons {
+	font-family: 'Comfortaa', cursive;
+}
+
+.featured {
+	font-family: 'Comfortaa', cursive;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.home {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	
+}
+
+.contentbox {
+	display: flex;
+	flex-direction: column;
+	background-color: rgba(207,207,207, .75);
+	border-style: solid;
+	border-width: 4px;
+	width: 40%;
+	padding: 5px;
+	margin: 50px 15px;
+	text-align: left;
+	align-items: center;
+	justify-content: space-between;
+	font-family: 'Comfortaa', cursive;
+}
+
+.container {
+	display: flex;
+	background-color: rgba(235,182,193, .5);
+	align-items: center;
+	justify-content: space-between;
+	padding: 15px;
+	width: 30%;
+	height: 20px;
+	margin: 0 auto;
+	border-style: solid;
+	border-width: 2px;
+	flex-direction: row;	
+}
+
+.logs {
+	display: flex;
+	width: 100%;
+	justify-content: space-evenly;
+	padding: 30px;
+	align-content: center;
+	text-decoration: none;
+	font-family: 'Comfortaa', cursive;
+}
