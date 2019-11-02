@@ -14,9 +14,6 @@
                     <button>Favorite</button>
                 </form>
                 <%}%>
-				<form action='/poi/new'>
-					<button>Add A Point Or Interest</button>
-				</form>
 				<a href="/jaunts/<%=jaunt._id%>/edit">Edit</a>
 				<form method='POST' action='/jaunts/<%=jaunt._id%>?_method=DELETE'><button value='DELETE'>Delete</button></form> </p>
 				<img src="<%=jaunt.photo%>" height=100px width=auto id='jauntPic' align='left'>

@@ -1,15 +1,13 @@
 <%- include ../header.ejs%>
+
 <div class="home">
 <div class="contentbox">
 
-
- <a href="/favorites">Favorites</a>
 	<title>Point Of Interest Page</title>
-	<h1>Point Of Interest Page For <%=poi.title%></h1>
-<form action='/poi/<%=poi._id%>/edit'>
-	<button type='Submit'>Edit This Place of Interest</button>
-</form>
-<form action='?_method=DELETE' method='POST'>
+	<h1><%=poi.title%></h1>
+<div><p><%=poi.description%></p></div>
+<div><img src="<%=poi.photo%>"></div>
+<form action='/jaunts/<%=jaunt._id%>/<%=index%>?_method=DELETE' method='POST'>
 	<button type='Submit'>Delete This Place of Interest</button>
 </form>
 </div>

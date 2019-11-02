@@ -1,14 +1,13 @@
 <%- include ../header.ejs%>
-
-	<nav>
-		<a href='/'>Home</a> | <a href='/users'>User</a> | <a href='/jaunts'>Jaunts</a> | <a href="/poi">Places Of Interest</a> | <a href="/favorites">Favorites</a>
-	</nav>
+<div class="home">
+<div class="contentbox">
 	<h1>Edit A New Point of Interest</h1>
-	<form action='/poi/<%=poi._id%>?_method=PUT', method='POST'>
+	<form action='/jaunts/<%=jaunt._id%><%=poiIndex%>?_method=PUT', method='POST'>
 		Title: <input type='text' name='title' value='<%=poi.title%>'><br/>
 		Photo: <input type='text' name='photo' value='<%=poi.photo%>'><br/>
 		Description: <input type='text' name='description' value='<%=poi.description%>'><br/>
 		<input type='submit' value='Edit A New Point of Interest'>
 	</form>
-
+</div>
+</div>
 <%- include ../footer.ejs%>

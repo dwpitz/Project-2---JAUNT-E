@@ -38,8 +38,8 @@ const userController = require('./controllers/user.js')
 app.use('/users', userController)
 
 // loading models for populating landing page
-const Jaunt = require('./models/jaunts.js')
-const Favorite = require('./models/favorites.js')
+const Jaunt = require('./models/jaunt.js')
+const Favorite = require('./models/favorite.js')
 const User = require('./models/user.js')
 
 // home page 

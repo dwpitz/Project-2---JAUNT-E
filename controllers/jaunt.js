@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const Jaunt = require('../models/jaunts')
-const Favorite = require('../models/favorites')
+const Jaunt = require('../models/jaunt')
+const Favorite = require('../models/favorite')
 const User = require('../models/user')
 
 // index route, a list of jaunts available
@@ -27,6 +27,7 @@ router.get('/new', (req, res, next) => {
 			}
 		}
 	else {
+		// displays on login page 
 		req.session.message = 'You must be logged in to add jaunts'
 		res.redirect('../users/login')
 	}
@@ -48,27 +49,18 @@ router.post('/', async (req, res, next) => {
 			next(err)
 		}
 	} else {
+		// displays on login page
 		req.session.message = 'You must be logged in to create jaunts'
 		res.redirect('../users/login')
 	}
 })
 
-// get route for google map practice
-router.get('/googlemappractice', (req, res, next) => {
-	try {
-		res.render('googlemapspractice.ejs')	
-	} catch(err){
-		next(err)
-	}
-})
-
-
 // show route for jaunt, including showing Places of Interest
 router.get('/:id', async (req, res, next) => {
 	try {
+		// if show is favorited, displays option to unfavorite, and the reverse
 		const foundFave = await Favorite.find({jauntId: req.params.id})
 		const foundJaunt = await Jaunt.findById(req.params.id)
-		console.log('\n favorites found ',foundFave)
 		res.render('jaunts/show.ejs', {
 			jaunt: foundJaunt,
 			fave: foundFave[0]
@@ -89,6 +81,7 @@ router.get('/:id/edit', async (req, res, next) => {
 			next(err)
 		}
 	} else {
+		// displays on login page
 		req.session.message = 'You must be logged in to edit jaunts'
 		res.redirect('/users/login')
 	} 
@@ -105,6 +98,7 @@ router.put('/:id', async (req, res, next) => {
 			next(err)
 		}
 	} else {
+		// displays on login page
 		req.session.messaage = 'You must be logged in to update jaunts'
 		res.redirect('../users/login')	
 	}
@@ -122,24 +116,21 @@ router.delete('/:id', async (req, res, next) => {
 			next(err)
 		}
 	} else {
+		// displays on login page
 		req.session.message = 'You must be logged in to delete jaunts'
 		res.redirect('../users/login')
 	}
 })
 
+// delete a POI
 router.delete('/:id/:index', async (req, res, next) => {
 	try {	
 		const foundJaunt = await Jaunt.findById(req.params.id)
 		const poiIndex = req.params.index
 		foundJaunt.poi.splice(poiIndex, 1)
-
 		console.log(foundJaunt.poi);
 		foundJaunt.save()
 		res.redirect('/jaunts/'+ req.params.id)
-
-		//find the jaunt
-		//splice it out of the array
-		//save the jaunt 
 	}
 	catch (err) {
 		next(err)
@@ -150,11 +141,54 @@ router.delete('/:id/:index', async (req, res, next) => {
 router.get('/:id/:index', async (req, res, next) => {
 	try {
 		const foundJaunt = await Jaunt.findById(req.params.id)
-		res.render('poi/show.ejs', {poi: foundJaunt.poi[req.params.index]})		
+		res.render('poi/show.ejs', {poi: foundJaunt.poi[req.params.index], jaunt: foundJaunt, index: req.params.index})		
 	} catch(err){
 		next(err)
 	}
 })
+/*
+// edit get route for poi
+router.get('/:id/:index/edit', async (req, res, next) => {
+	if (req.session.loggedIn) {
+		try {
+			console.log('\n req.params for poi edit route on jaunt controller',req.params)
+			const foundJaunt = await Jaunt.findById(req.params.id)
+			const foundPoi = foundJaunt.poi[req.params.index]
+			res.render('poi/edit.ejs', {
+				poi: foundPoi,
+				poiIndex: req.params.index,
+				jaunt: foundJaunt
+			})
+		}
+		catch (err) {
+			next(err)
+		}
+	} else {
+		// displays on login page
+		req.session.messaage = 'You must be logged in to update Places of Interest'
+		res.redirect('../users/login')	
+	}
+})
+
+router.put('/:id/:index', async (req, res, next) => {
+	if (req.session.loggedIn) {
+		try {
+			const updatedJaunt = await Jaunt.findById(req.params.id)
+			updatedJaunt.poi[index] = req.body
+			updatedJaunt.save()
+			console.log(updatedJaunt)
+			res.redirect('/jaunts/'+req.body.id)		    
+		} catch(err){
+			next(err)
+		}
+	} else {
+		// displays on login page
+		req.session.messaage = 'You must be logged in to update jaunts'
+		res.redirect('../users/login')	
+	}
+})
+
+*/
 
 
 module.exports = router

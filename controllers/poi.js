@@ -1,15 +1,13 @@
-
 const express = require('express')
 const router = express.Router()
 const Poi = require('../models/poi')
-const Jaunt = require('../models/jaunts')
+const Jaunt = require('../models/jaunt')
 
 
-
-//poi Index Route
+// poi Index Route
+// #delete? should only show in reference to the Jaunts
 router.get('/', async (req, res, next) => {
 	try {
-		//this is the request to the db
 		const foundPois = await Poi.find()
 		res.render('poi/index.ejs', {
 			pois: foundPois
@@ -21,7 +19,8 @@ router.get('/', async (req, res, next) => {
 })
 
 //poi New Route
-router.get('/new', async (req, res, next) => {
+// #remove? puts them into a standalone db that shouldn't exist afaik
+/*router.get('/new', async (req, res, next) => {
 	try {
 		const foundJaunts = await Jaunt.find({})
 		res.render('poi/new.ejs', {jaunts: foundJaunts})
@@ -30,12 +29,10 @@ router.get('/new', async (req, res, next) => {
 		next(err)
 	}
 })
-
+*/
 //poi Create Route
 router.post('/', async (req, res, next) => {
 	try {
-		console.log("req.body");
-		console.log(req.body)
 		const jaunt = await Jaunt.findById(req.body.jauntId)
 		jaunt.poi.push({
 			title: req.body.title,
@@ -51,13 +48,11 @@ router.post('/', async (req, res, next) => {
 	}
 })
 
-
-
 // poi show route
+//# remove? shown on jaunt page
 router.get('/jaunts/:id', async (req, res, next) => {
 	try {
-		// const foundPoi = await Poi.findById(req.params.id)
-		// console.log(foundPoi);
+		 const foundPoi = await Poi.findById(req.params.id)
 		res.render('poi/show.ejs', {
 			poi: foundPoi
 		})
@@ -67,9 +62,13 @@ router.get('/jaunts/:id', async (req, res, next) => {
 	}
 })
 
+
 //poi edit route
-router.get('/:id/edit', async (req, res, next) => {
+// #move to jaunt controller? or just somehow get it's 
+// parent id to allow edits   
+/*router.get('/:id/edit', async (req, res, next) => {
 	try {
+		console.log(req.params)
 		const foundPoi = await Poi.findById(req.params.id)
 		res.render('poi/edit.ejs', {
 			poi: foundPoi
@@ -94,26 +93,7 @@ router.put('/:id', async (req, res, next) => {
 		next(err)
 	}
 })
-
-//poi delete route
-//we need to delete the poi that's a subdocument of the jaunt
-router.delete('/:id', async (req, res, next) => {
-	try {
-		console.log(req.body, ' is req.body')
-		console.log(req.params, ' is req.params')
-		const foundPoi = await Poi.find(req.params._id)
-		console.log(foundPoi)
-		const foundJaunt = await Jaunt.find({poi: {$in: [req.params._id]}})
-		console.log(foundJaunt, 'is the jaunt found via reverse-search')
-		const foundAgainJaunt = await Jaunt.findOne({poi: {$in: ['5db9e24f2dd48247f0c26f35']}})
-		res.redirect('/poi')
-	}
-	catch (err) {
-		next(err)
-	}
-})
-
-
+*/
 
 
 

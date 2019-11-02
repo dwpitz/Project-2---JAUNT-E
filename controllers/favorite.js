@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router()
-const Favorite = require('../models/favorites')
-const Jaunt = require('../models/jaunts')
+const Favorite = require('../models/favorite')
+const Jaunt = require('../models/jaunt')
 const User = require('../models/user')
 
 // index route
@@ -19,17 +19,16 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
-// new route
+// new route, favoriting a Jaunt
 router.post('/', async (req, res, next) => {
 	if (req.session.loggedIn){
 		try {
 			const foundJaunt = await Jaunt.findById(req.body.jauntId)
 			const foundUser = await User.findById(req.session.userId)
+			// now accessible via both the Jaunt info and the User (who favorited)
 			const alreadyFave = await Favorite.find({jauntId: foundJaunt._id, user: req.session.userId})
 			const createdFave = await Favorite.create({jauntId: foundJaunt._id, title: foundJaunt.title, user: req.session.userId})
 				console.log(createdFave)
-
-				//trying to think through unfavorite logic, not the most important, just ridic if we don't have it
 			res.redirect('/jaunts')
 		} catch(err) {
 			next(err)	
@@ -41,7 +40,7 @@ router.post('/', async (req, res, next) => {
 })
 
 
-// delete route available on Jaunt show page
+// delete route available on Jaunt show page, as 'Unfavorite'
 router.delete('/:id', async (req, res, next) => {
 	if (req.session.loggedIn ){
 		try {
@@ -58,9 +57,6 @@ router.delete('/:id', async (req, res, next) => {
 		res.redirect('../users/login')
 	}
 })
-// delete route attached to the new route? The button becomes an undelete when it is shown to have been in db? 
-
-
 
 
 module.exports = router
